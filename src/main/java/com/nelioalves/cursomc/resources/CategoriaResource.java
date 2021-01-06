@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/categorias")
-public class CategoriaResources {
+public class CategoriaResource {
     @RequestMapping(method = RequestMethod.GET)
     public List<Categoria> listar() {
         Categoria cat1 = new Categoria(1, "José");
