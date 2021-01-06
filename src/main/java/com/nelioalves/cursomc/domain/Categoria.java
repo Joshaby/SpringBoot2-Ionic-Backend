@@ -1,10 +1,9 @@
 package com.nelioalves.cursomc.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +14,9 @@ public class Categoria implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+
+    @ManyToMany(mappedBy = "categoriasList")
+    private List<Produto> produtosList = new ArrayList<>();
 
     public Categoria(Integer id, String nome) {
         this.id = id;
@@ -36,6 +38,12 @@ public class Categoria implements Serializable {
     }
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    public List<Produto> getProdutosList() {
+        return produtosList;
+    }
+    public void setProdutosList(List<Produto> produtoList) {
+        this.produtosList = produtoList;
     }
 
     @Override
