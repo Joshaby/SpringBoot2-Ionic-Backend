@@ -1,5 +1,7 @@
 package com.nelioalves.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -38,6 +40,7 @@ public class Estado implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    @JsonIgnore
     public List<Cidade> getCidadeList() {
         return cidadeList;
     }

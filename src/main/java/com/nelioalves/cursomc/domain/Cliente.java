@@ -1,7 +1,6 @@
 package com.nelioalves.cursomc.domain;
 
 import com.nelioalves.cursomc.domain.enums.TipoCliente;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;

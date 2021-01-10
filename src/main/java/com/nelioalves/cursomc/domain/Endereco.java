@@ -1,5 +1,7 @@
 package com.nelioalves.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -77,6 +79,7 @@ public class Endereco implements Serializable {
     public void setCep(String cep) {
         this.cep = cep;
     }
+    @JsonIgnore
     public Cliente getCliente() {
         return cliente;
     }
