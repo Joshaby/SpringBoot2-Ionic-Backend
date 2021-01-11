@@ -1,15 +1,16 @@
 package com.nelioalves.cursomc.domain.enums;
 
-public enum TipoCliente {
+public enum EstadoPagamento {
 
-    PESSOAFISICA(1, "Pessoa Física"),
-    PESSOAJURIDICA(2, "Pessoa Jurídica");
+    PEDENTE(1, "Pendente"),
+    CANCELADO(2, "Cancelado"),
+    QUITADO(3, "Quitado");
 
     private Integer tipo;
     private String descricao;
 
-    TipoCliente(Integer tipo, String descricao) {
-        this.tipo =  tipo;
+    EstadoPagamento(Integer tipo, String descricao) {
+        this.tipo = tipo;
         this.descricao = descricao;
     }
 
@@ -20,13 +21,13 @@ public enum TipoCliente {
         return descricao;
     }
 
-    public static TipoCliente toEnum(Integer tipo) {
+    public static EstadoPagamento toEnum(Integer tipo) {
         if (tipo == null) {
             return null;
         }
-        for (TipoCliente tipoCliente : TipoCliente.values()) {
-            if (tipo.equals(tipoCliente.getTipo()))
-                return tipoCliente;
+        for (EstadoPagamento estadoPagamento : EstadoPagamento.values()) {
+            if (estadoPagamento.getTipo().equals(tipo))
+                return estadoPagamento;
         }
         throw new IllegalArgumentException(String.format("Id %s inválido", tipo));
     }
