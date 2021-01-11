@@ -3,9 +3,9 @@ package com.nelioalves.cursomc.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Entity
 public class Produto implements Serializable {
@@ -16,13 +16,14 @@ public class Produto implements Serializable {
     private Integer id;
     private String nome;
     private Double preco;
-
     @ManyToMany
     @JoinTable(name = "PRODUTO_CATEGORIA",
             joinColumns = @JoinColumn(name = "produto_id"),
             inverseJoinColumns = @JoinColumn(name = "categoria_ID")
     )
     private List<Categoria> categoriasList = new ArrayList<>();
+    @OneToMany(mappedBy = "id.produto")
+    private Set<ItemPedido> itemPedidoSet = new HashSet<>();
 
     public Produto() {
 
@@ -53,11 +54,21 @@ public class Produto implements Serializable {
         this.preco = preco;
     }
     @JsonIgnore
-    public List<Categoria> getCategoriaLst() {
+    public List<Categoria> getCategoriaList() {
         return categoriasList;
     }
-    public void setCategoriaLst(List<Categoria> categoriaLst) {
+    public void setCategoriaList(List<Categoria> categoriaLst) {
         this.categoriasList = categoriaLst;
+    }
+    public Set<ItemPedido> getItemPedidoSet() {
+        return itemPedidoSet;
+    }
+    public void setItemPedidoSet(Set<ItemPedido> itemPedidoSet) {
+        this.itemPedidoSet = itemPedidoSet;
+    }
+    @JsonIgnore
+    public List<Pedido> getPedidos() {
+        return itemPedidoSet.stream().map(ItemPedido::getPedido).collect(Collectors.toList());
     }
 
     @Override
@@ -67,7 +78,6 @@ public class Produto implements Serializable {
         Produto produto = (Produto) o;
         return id.equals(produto.id);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id);

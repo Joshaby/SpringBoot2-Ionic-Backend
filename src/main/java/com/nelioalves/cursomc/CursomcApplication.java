@@ -11,6 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.stream.Collector;
 
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner {
@@ -31,6 +34,8 @@ public class CursomcApplication implements CommandLineRunner {
 	private PedidoRepository pedidoRepository;
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -48,9 +53,9 @@ public class CursomcApplication implements CommandLineRunner {
 		categoria1.getProdutosList().addAll(Arrays.asList(produto1, produto2, produto3));
 		categoria2.getProdutosList().addAll(Arrays.asList(produto2));
 
-		produto1.getCategoriaLst().addAll(Arrays.asList(categoria1));
-		produto2.getCategoriaLst().addAll(Arrays.asList(categoria1, categoria2));
-		produto3.getCategoriaLst().addAll(Arrays.asList(categoria1));
+		produto1.getCategoriaList().addAll(Arrays.asList(categoria1));
+		produto2.getCategoriaList().addAll(Arrays.asList(categoria1, categoria2));
+		produto3.getCategoriaList().addAll(Arrays.asList(categoria1));
 
 		categoriaRepository.saveAll(Arrays.asList(categoria1, categoria2));
 		produtoRepository.saveAll(Arrays.asList(produto1, produto2, produto3));
@@ -93,5 +98,17 @@ public class CursomcApplication implements CommandLineRunner {
 
 		pedidoRepository.saveAll(Arrays.asList(pedido1, pedido2));
 		pagamentoRepository.saveAll(Arrays.asList(pagamento1, pagamento2));
+
+		ItemPedido itemPedido1 = new ItemPedido(produto1, pedido1, 0.00, 1, 2000.00);
+		produto1.getItemPedidoSet().addAll(Collections.singletonList(itemPedido1));
+		ItemPedido itemPedido2 = new ItemPedido(produto3, pedido1, 0.00, 2, 80.00);
+		produto3.getItemPedidoSet().addAll(Collections.singletonList(itemPedido2));
+		ItemPedido itemPedido3 = new ItemPedido(produto2, pedido2, 100.00, 1, 800.00);
+		produto2.getItemPedidoSet().addAll(Collections.singletonList(itemPedido3));
+
+		pedido1.getItemPedidoSet().addAll(Arrays.asList(itemPedido1, itemPedido2));
+		pedido2.getItemPedidoSet().addAll(Collections.singletonList(itemPedido3));
+
+		itemPedidoRepository.saveAll(Arrays.asList(itemPedido1, itemPedido2, itemPedido3));
 	}
 }

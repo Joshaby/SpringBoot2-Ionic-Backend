@@ -1,9 +1,13 @@
 package com.nelioalves.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Pedido implements Serializable {
@@ -21,6 +25,8 @@ public class Pedido implements Serializable {
     @ManyToOne
     @JoinColumn(name = "ENDERECO")
     private Endereco endereco;
+    @OneToMany(mappedBy = "id.pedido")
+    private Set<ItemPedido> itemPedidoSet = new HashSet<>();
 
     public Pedido(Integer id, Date instante, Cliente cliente, Endereco endereco) {
         this.id = id;
@@ -44,6 +50,7 @@ public class Pedido implements Serializable {
     public void setInstante(Date instante) {
         this.instante = instante;
     }
+    @JsonIgnore
     public Pagamento getPagamento() {
         return pagamento;
     }
@@ -53,6 +60,7 @@ public class Pedido implements Serializable {
     public Cliente getCliente() {
         return cliente;
     }
+    @JsonIgnore
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
@@ -61,6 +69,13 @@ public class Pedido implements Serializable {
     }
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+    @JsonIgnore
+    public Set<ItemPedido> getItemPedidoSet() {
+        return itemPedidoSet;
+    }
+    public void setItemPedidoSet(Set<ItemPedido> itemPedidoSet) {
+        this.itemPedidoSet = itemPedidoSet;
     }
 
     @Override
