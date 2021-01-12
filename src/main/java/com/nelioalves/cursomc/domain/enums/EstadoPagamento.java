@@ -1,5 +1,8 @@
 package com.nelioalves.cursomc.domain.enums;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 public enum EstadoPagamento {
 
     PEDENTE(1, "Pendente"),
@@ -25,10 +28,9 @@ public enum EstadoPagamento {
         if (tipo == null) {
             return null;
         }
-        for (EstadoPagamento estadoPagamento : EstadoPagamento.values()) {
-            if (estadoPagamento.getTipo().equals(tipo))
-                return estadoPagamento;
-        }
-        throw new IllegalArgumentException(String.format("Id %s inválido", tipo));
+        Optional<EstadoPagamento> estadoPagamento = Arrays.stream(
+                EstadoPagamento.values()).filter(EstadoPagamento -> EstadoPagamento.getTipo().equals(tipo)).findFirst();
+        return estadoPagamento.orElseThrow(
+                () -> new IllegalArgumentException(String.format("Id %s inválido", tipo)));
     }
 }

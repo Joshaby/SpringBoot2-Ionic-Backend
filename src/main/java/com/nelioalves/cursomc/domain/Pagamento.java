@@ -1,5 +1,6 @@
 package com.nelioalves.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nelioalves.cursomc.domain.enums.EstadoPagamento;
 
 import javax.persistence.*;
@@ -40,6 +41,7 @@ public abstract class Pagamento implements Serializable {
     public void setEstadoPagamento(EstadoPagamento estadoPagamento) {
         this.estadoPagamento = estadoPagamento.getTipo();
     }
+    @JsonIgnore
     public Pedido getPedido() {
         return pedido;
     }

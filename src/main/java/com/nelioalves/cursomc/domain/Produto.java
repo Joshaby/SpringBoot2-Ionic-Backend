@@ -53,13 +53,14 @@ public class Produto implements Serializable {
     public void setPreco(Double preco) {
         this.preco = preco;
     }
-    @JsonIgnore
     public List<Categoria> getCategoriaList() {
         return categoriasList;
     }
+    @JsonIgnore
     public void setCategoriaList(List<Categoria> categoriaLst) {
         this.categoriasList = categoriaLst;
     }
+    @JsonIgnore
     public Set<ItemPedido> getItemPedidoSet() {
         return itemPedidoSet;
     }

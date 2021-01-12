@@ -1,5 +1,6 @@
 package com.nelioalves.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nelioalves.cursomc.domain.enums.TipoCliente;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -81,6 +82,7 @@ public class Cliente implements Serializable {
     public void setTelefones(Set<String> telefones) {
         this.telefones = telefones;
     }
+    @JsonIgnore
     public List<Pedido> getPedidoList() {
         return pedidoList;
     }

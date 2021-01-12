@@ -1,5 +1,8 @@
 package com.nelioalves.cursomc.domain.enums;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 public enum TipoCliente {
 
     PESSOAFISICA(1, "Pessoa Física"),
@@ -24,10 +27,9 @@ public enum TipoCliente {
         if (tipo == null) {
             return null;
         }
-        for (TipoCliente tipoCliente : TipoCliente.values()) {
-            if (tipo.equals(tipoCliente.getTipo()))
-                return tipoCliente;
-        }
-        throw new IllegalArgumentException(String.format("Id %s inválido", tipo));
+        Optional<TipoCliente> optionalTipoCliente = Arrays.stream(
+                TipoCliente.values()).filter(TipoCliente -> TipoCliente.getTipo().equals(tipo)).findFirst();
+        return optionalTipoCliente.orElseThrow(
+                () -> new IllegalArgumentException(String.format("Id %s inválido", tipo)));
     }
 }

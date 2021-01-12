@@ -46,7 +46,6 @@ public class ItemPedido implements Serializable {
     public void setPreco(Double preco) {
         this.preco = preco;
     }
-    @JsonIgnore
     public Produto getProduto() {
         return id.getProduto();
     }

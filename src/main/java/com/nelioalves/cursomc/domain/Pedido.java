@@ -50,7 +50,6 @@ public class Pedido implements Serializable {
     public void setInstante(Date instante) {
         this.instante = instante;
     }
-    @JsonIgnore
     public Pagamento getPagamento() {
         return pagamento;
     }
@@ -60,7 +59,6 @@ public class Pedido implements Serializable {
     public Cliente getCliente() {
         return cliente;
     }
-    @JsonIgnore
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
@@ -70,7 +68,6 @@ public class Pedido implements Serializable {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-    @JsonIgnore
     public Set<ItemPedido> getItemPedidoSet() {
         return itemPedidoSet;
     }

@@ -1,5 +1,7 @@
 package com.nelioalves.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,6 +25,7 @@ public class ItemPedidoPK implements Serializable {
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
+    @JsonIgnore
     public Pedido getPedido() {
         return pedido;
     }
