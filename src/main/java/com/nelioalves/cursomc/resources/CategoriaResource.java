@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
+import java.net.URISyntaxException;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -21,7 +22,7 @@ public class CategoriaResource {
         return ResponseEntity.ok().body(categoria);
     }
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> insert(@RequestBody Categoria categoria) {
+    public ResponseEntity<Void> insert(@RequestBody Categoria categoria) throws URISyntaxException {
         categoriaService.insert(categoria);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(categoria.getId()).toUri();
@@ -31,6 +32,11 @@ public class CategoriaResource {
     public ResponseEntity<Categoria> update(@RequestBody Categoria categoria, @PathVariable Integer id) {
         categoria.setId(id);
         categoriaService.update(categoria);
+        return ResponseEntity.noContent().build();
+    }
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        categoriaService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }
