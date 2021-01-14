@@ -8,8 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import javax.validation.Valid;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,15 +26,17 @@ public class CategoriaResource {
         return ResponseEntity.ok().body(categoria);
     }
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> insert(@RequestBody Categoria categoria) throws URISyntaxException {
+    public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO categoriaDTO) {
+        Categoria categoria = categoriaService.toCategoria(categoriaDTO);
         categoriaService.insert(categoria);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}").buildAndExpand(categoria.getId()).toUri();
+                .path("/{id}").buildAndExpand(categoriaDTO.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Categoria> update(@RequestBody Categoria categoria, @PathVariable Integer id) {
-        categoria.setId(id);
+    public ResponseEntity<Categoria> update(@Valid @RequestBody CategoriaDTO categoriaDTO, @PathVariable Integer id) {
+        categoriaDTO.setId(id);
+        Categoria categoria = categoriaService.toCategoria(categoriaDTO);
         categoriaService.update(categoria);
         return ResponseEntity.noContent().build();
     }
