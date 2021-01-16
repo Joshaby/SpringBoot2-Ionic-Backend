@@ -6,7 +6,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
-public class ClienteDTO implements Serializable {
+public class ClienteDTO1 implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
@@ -17,12 +17,12 @@ public class ClienteDTO implements Serializable {
     @Email(message = "Email inválido!")
     private String email;
 
-    public ClienteDTO(Cliente cliente) {
+    public ClienteDTO1(Cliente cliente) {
         this.id = cliente.getId();
         this.nome = cliente.getNome();
         this.email = cliente.getEmail();
     }
-    public ClienteDTO() {
+    public ClienteDTO1() {
 
     }
 

@@ -1,13 +1,16 @@
 package com.nelioalves.cursomc.resources;
 
 import com.nelioalves.cursomc.domain.Cliente;
-import com.nelioalves.cursomc.dto.ClienteDTO;
+import com.nelioalves.cursomc.dto.ClienteDTO1;
+import com.nelioalves.cursomc.dto.ClienteDTO2;
 import com.nelioalves.cursomc.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,10 +26,17 @@ public class ClienteResource {
         Cliente cliente = clienteService.find(id);
         return ResponseEntity.ok().body(cliente);
     }
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Void> insert(@RequestBody ClienteDTO2 clienteDTO2) {
+        Cliente cliente = clienteService.toCliente(clienteDTO2);
+        clienteService.insert(cliente);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cliente.getId()).toUri();
+        return ResponseEntity.created(uri).build();
+    }
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO clienteDTO, @PathVariable Integer id) {
-        clienteDTO.setId(id);
-        Cliente cliente = clienteService.update(clienteService.toCliete(clienteDTO));
+    public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO1 clienteDTO1, @PathVariable Integer id) {
+        clienteDTO1.setId(id);
+        Cliente cliente = clienteService.update(clienteService.toCliente(clienteDTO1));
         return ResponseEntity.noContent().build();
     }
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
@@ -35,18 +45,18 @@ public class ClienteResource {
         return ResponseEntity.noContent().build();
     }
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<ClienteDTO>> findAll() {
+    public ResponseEntity<List<ClienteDTO1>> findAll() {
         return ResponseEntity.ok().body(
-                clienteService.findAll().stream().map(ClienteDTO::new).collect(Collectors.toList()));
+                clienteService.findAll().stream().map(ClienteDTO1::new).collect(Collectors.toList()));
     }
     @RequestMapping(value ="/pages", method = RequestMethod.GET)
-    public ResponseEntity<Page<ClienteDTO>> findPage(
+    public ResponseEntity<Page<ClienteDTO1>> findPage(
         @RequestParam(value = "page", defaultValue = "0") Integer page,
         @RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPages,
         @RequestParam(value = "direction", defaultValue = "ASC") String direction,
         @RequestParam(value = "orderBy", defaultValue = "id") String orderBy) {
 
         return ResponseEntity.ok().body(
-                clienteService.findPage(page, linesPerPages, direction, orderBy).map(ClienteDTO::new));
+                clienteService.findPage(page, linesPerPages, direction, orderBy).map(ClienteDTO1::new));
     }
 }
