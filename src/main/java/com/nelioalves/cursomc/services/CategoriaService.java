@@ -30,6 +30,7 @@ public class CategoriaService {
         return repository.save(categoria);
     }
     public Categoria update(Categoria categoria) {
+        find(categoria.getId());
         return repository.save(categoria);
     }
     public void delete(Integer id) {
