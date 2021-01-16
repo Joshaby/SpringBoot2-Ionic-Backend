@@ -2,7 +2,6 @@ package com.nelioalves.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nelioalves.cursomc.domain.enums.EstadoPagamento;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -22,7 +21,7 @@ public abstract class Pagamento implements Serializable {
 
     public Pagamento(Integer id, EstadoPagamento estadoPagamento, Pedido pedido) {
         this.id = id;
-        this.estadoPagamento = estadoPagamento.getTipo();
+        this.estadoPagamento = (estadoPagamento == null) ? null : estadoPagamento.getTipo();
         this.pedido = pedido;
     }
     public Pagamento() {

@@ -52,10 +52,11 @@ public class CategoriaResource {
     }
     @RequestMapping(value = "/pages", method = RequestMethod.GET)
     public ResponseEntity<Page<CategoriaDTO>> findPage(
-            @RequestParam(value = "page", defaultValue = "0") Integer page,
-            @RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
-            @RequestParam(value = "direction", defaultValue = "ASC") String direction,
-            @RequestParam(value = "orderBy", defaultValue = "id") String orderBy) {
+        @RequestParam(value = "page", defaultValue = "0") Integer page,
+        @RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
+        @RequestParam(value = "direction", defaultValue = "ASC") String direction,
+        @RequestParam(value = "orderBy", defaultValue = "id") String orderBy) {
+
         return ResponseEntity.ok().body(
                 categoriaService.findPage(page, linesPerPage, direction, orderBy).map(CategoriaDTO::new));
     }
