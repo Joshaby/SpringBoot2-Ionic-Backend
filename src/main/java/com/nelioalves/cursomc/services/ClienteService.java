@@ -51,7 +51,7 @@ public class ClienteService {
             clienteRepositoy.deleteById(id);
         }
         catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Não é possível remover o cliente, ele possí relações com entidades!");
+            throw new DataIntegrityException("Não é possível remover o cliente, ele possuí produtos!");
         }
     }
     public List<Cliente> findAll() {
