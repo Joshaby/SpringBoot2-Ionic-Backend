@@ -30,7 +30,7 @@ public class CategoriaResource {
         Categoria categoria = categoriaService.toCategoria(categoriaDTO);
         categoriaService.insert(categoria);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}").buildAndExpand(categoriaDTO.getId()).toUri();
+            .path("/{id}").buildAndExpand(categoriaDTO.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
@@ -48,7 +48,7 @@ public class CategoriaResource {
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<CategoriaDTO>> findAll() {
         return ResponseEntity.ok().body(
-                categoriaService.findAll().stream().map(CategoriaDTO::new).collect(Collectors.toList()));
+            categoriaService.findAll().stream().map(CategoriaDTO::new).collect(Collectors.toList()));
     }
     @RequestMapping(value = "/pages", method = RequestMethod.GET)
     public ResponseEntity<Page<CategoriaDTO>> findPage(
@@ -56,8 +56,7 @@ public class CategoriaResource {
         @RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
         @RequestParam(value = "direction", defaultValue = "ASC") String direction,
         @RequestParam(value = "orderBy", defaultValue = "id") String orderBy) {
-
         return ResponseEntity.ok().body(
-                categoriaService.findPage(page, linesPerPage, direction, orderBy).map(CategoriaDTO::new));
+            categoriaService.findPage(page, linesPerPage, direction, orderBy).map(CategoriaDTO::new));
     }
 }

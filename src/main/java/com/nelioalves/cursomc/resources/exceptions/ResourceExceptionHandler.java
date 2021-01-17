@@ -18,9 +18,10 @@ public class ResourceExceptionHandler {
         ObjectNotFoundException objectNotFoundException, HttpServletRequest httpServletRequest) {
 
         StandardError standardError = new StandardError(
-                HttpStatus.NOT_FOUND.value(),
-                objectNotFoundException.getMessage(),
-                System.currentTimeMillis());
+            HttpStatus.NOT_FOUND.value(),
+            objectNotFoundException.getMessage(),
+            System.currentTimeMillis());
+
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(standardError);
     }
     @ExceptionHandler(DataIntegrityException.class)
@@ -28,9 +29,10 @@ public class ResourceExceptionHandler {
         DataIntegrityException dataIntegrityException, HttpServletRequest httpServletRequest) {
 
         StandardError standardError = new StandardError(
-                HttpStatus.BAD_REQUEST.value(),
-                dataIntegrityException.getMessage(),
-                System.currentTimeMillis());
+            HttpStatus.BAD_REQUEST.value(),
+            dataIntegrityException.getMessage(),
+            System.currentTimeMillis());
+
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(standardError);
     }
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -38,13 +40,14 @@ public class ResourceExceptionHandler {
         MethodArgumentNotValidException methodArgumentNotValidException, HttpServletRequest httpServletRequest) {
 
         ValidationError validationError = new ValidationError(
-                HttpStatus.BAD_REQUEST.value(),
-                "Erro de validação",
-                System.currentTimeMillis());
+            HttpStatus.BAD_REQUEST.value(),
+            "Erro de validação",
+            System.currentTimeMillis());
 
         for (FieldError fieldError : methodArgumentNotValidException.getFieldErrors()) {
             validationError.addErrors(fieldError.getField(), fieldError.getDefaultMessage());
         }
+
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationError);
     }
 }

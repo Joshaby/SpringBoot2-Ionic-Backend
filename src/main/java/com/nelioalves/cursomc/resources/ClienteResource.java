@@ -30,7 +30,8 @@ public class ClienteResource {
     public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO2 clienteDTO2) {
         Cliente cliente = clienteService.toCliente(clienteDTO2);
         clienteService.insert(cliente);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cliente.getId()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+            .path("/{id}").buildAndExpand(cliente.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
@@ -47,7 +48,7 @@ public class ClienteResource {
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<ClienteDTO1>> findAll() {
         return ResponseEntity.ok().body(
-                clienteService.findAll().stream().map(ClienteDTO1::new).collect(Collectors.toList()));
+            clienteService.findAll().stream().map(ClienteDTO1::new).collect(Collectors.toList()));
     }
     @RequestMapping(value ="/pages", method = RequestMethod.GET)
     public ResponseEntity<Page<ClienteDTO1>> findPage(
@@ -55,8 +56,7 @@ public class ClienteResource {
         @RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPages,
         @RequestParam(value = "direction", defaultValue = "ASC") String direction,
         @RequestParam(value = "orderBy", defaultValue = "id") String orderBy) {
-
         return ResponseEntity.ok().body(
-                clienteService.findPage(page, linesPerPages, direction, orderBy).map(ClienteDTO1::new));
+            clienteService.findPage(page, linesPerPages, direction, orderBy).map(ClienteDTO1::new));
     }
 }

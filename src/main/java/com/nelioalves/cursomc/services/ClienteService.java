@@ -22,6 +22,7 @@ import java.util.*;
 
 @Service
 public class ClienteService {
+
     @Autowired
     private ClienteRepositoy clienteRepositoy;
     @Autowired
@@ -30,7 +31,7 @@ public class ClienteService {
     public Cliente find(Integer id) {
         Optional<Cliente> optionalCliente = clienteRepositoy.findById(id);
         return optionalCliente.orElseThrow(
-                () -> new ObjectNotFoundException(String.format("Objeto %d não encontrado! Tipo: %s", id, Cliente.class.getName())));
+            () -> new ObjectNotFoundException(String.format("Objeto %d não encontrado! Tipo: %s", id, Cliente.class.getName())));
     }
     @Transactional
     public Cliente insert(Cliente cliente) {

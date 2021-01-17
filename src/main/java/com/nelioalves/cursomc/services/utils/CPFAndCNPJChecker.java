@@ -54,5 +54,4 @@ public class CPFAndCNPJChecker {
         if (numbers.get(12) == d1 && numbers.get(13) == d2) return true;
         return false;
     }
-
 }

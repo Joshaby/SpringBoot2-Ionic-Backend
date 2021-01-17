@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/pedidos")
 public class PedidoResource {
+
     @Autowired
     private PedidoService pedidoService;
 

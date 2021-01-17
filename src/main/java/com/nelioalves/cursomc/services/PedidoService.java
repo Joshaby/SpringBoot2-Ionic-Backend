@@ -9,12 +9,13 @@ import java.util.Optional;
 
 @Service
 public class PedidoService {
+
     @Autowired
     private PedidoRepository pedidoRepository;
 
     public Pedido find(Integer id) {
         Optional<Pedido> pedidoOptional = pedidoRepository.findById(id);
         return pedidoOptional.orElseThrow(
-                () -> new ObjectNotFoundException(String.format("Objeto %d não encontrado! Tipo: %s", id, Pedido.class.getName())));
+            () -> new ObjectNotFoundException(String.format("Objeto %d não encontrado! Tipo: %s", id, Pedido.class.getName())));
     }
 }

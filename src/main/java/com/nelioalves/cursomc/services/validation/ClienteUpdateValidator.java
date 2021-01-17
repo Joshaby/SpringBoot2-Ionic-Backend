@@ -25,7 +25,6 @@ public class ClienteUpdateValidator implements ConstraintValidator<ClienteUpdate
     }
     @Override
     public boolean isValid(ClienteDTO1 clienteDTO1, ConstraintValidatorContext constraintValidatorContext) {
-
         List<FieldMessage> fieldMessageList = new ArrayList<>();
         Map<String, String> uriVariables = (Map<String, String>) httpServletRequest.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
         Integer id = Integer.parseInt(uriVariables.get("id"));
@@ -38,7 +37,6 @@ public class ClienteUpdateValidator implements ConstraintValidator<ClienteUpdate
             constraintValidatorContext.buildConstraintViolationWithTemplate(fieldMessage.getMessage())
                 .addPropertyNode(fieldMessage.getField()).addConstraintViolation();
         }
-
         return fieldMessageList.isEmpty();
     }
 }
