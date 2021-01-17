@@ -25,8 +25,8 @@ public class ClienteInsertValidator implements ConstraintValidator<ClienteValida
 
     @Override
     public boolean isValid(ClienteDTO2 clienteDTO2, ConstraintValidatorContext context) {
-        List<FieldMessage> list = new ArrayList<>();
 
+        List<FieldMessage> list = new ArrayList<>();
         if (clienteDTO2.getTipoCliente().equals(TipoCliente.PESSOAFISICA.getTipo())
             && !CPFAndCNPJChecker.isCPF(clienteDTO2.getCpfOuCnpj())) {
 
@@ -40,12 +40,12 @@ public class ClienteInsertValidator implements ConstraintValidator<ClienteValida
         Cliente cliente = clienteRepositoy.findByEmail(clienteDTO2.getEmail());
         if (cliente != null)
             list.add(new FieldMessage("email", "Email já existe!"));
-
         for (FieldMessage e : list) {
             context.disableDefaultConstraintViolation();
             context.buildConstraintViolationWithTemplate(e.getMessage())
                 .addPropertyNode(e.getField()).addConstraintViolation();
         }
+
         return list.isEmpty();
     }
 }
