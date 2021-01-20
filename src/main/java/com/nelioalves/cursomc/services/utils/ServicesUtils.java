@@ -3,7 +3,7 @@ package com.nelioalves.cursomc.services.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CPFAndCNPJChecker {
+public class ServicesUtils {
 
     private static int mod(int dividendo, int divisor) {
         return (int) Math.round(dividendo - (Math.floor(dividendo / divisor) * divisor));
