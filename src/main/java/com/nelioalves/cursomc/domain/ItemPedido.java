@@ -1,7 +1,6 @@
 package com.nelioalves.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import java.io.Serializable;
@@ -52,6 +51,9 @@ public class ItemPedido implements Serializable {
     @JsonIgnore
     public Pedido getPedido() {
         return id.getPedido();
+    }
+    public Double getSubtotal() {
+        return (getPreco() - getDesconto()) * getQuantidade();
     }
 
     @Override

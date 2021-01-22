@@ -1,7 +1,6 @@
 package com.nelioalves.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -74,6 +73,13 @@ public class Pedido implements Serializable {
     }
     public void setItemPedidoSet(Set<ItemPedido> itemPedidoSet) {
         this.itemPedidoSet = itemPedidoSet;
+    }
+    public Double getTotalPedido() {
+        Double result = 0.0;
+        for (ItemPedido itemPedido : getItemPedidoSet()) {
+            result += itemPedido.getSubtotal();
+        }
+        return result;
     }
 
     @Override

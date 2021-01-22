@@ -5,7 +5,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Entity
 public class Produto implements Serializable {
