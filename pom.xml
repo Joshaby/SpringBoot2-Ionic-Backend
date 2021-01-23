@@ -15,7 +15,7 @@
 	<description>Estudo de caso Java para curso de Modelagem Conceitual com UML</description>
 
 	<properties>
-		<java.version>8</java.version>
+		<java.version>11</java.version>
 	</properties>
 
 	<dependencies>
