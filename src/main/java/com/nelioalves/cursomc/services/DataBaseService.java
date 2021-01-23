@@ -33,7 +33,7 @@ public class DataBaseService {
     @Autowired
     private ItemPedidoRepository itemPedidoRepository;
 
-    public void initializeJ2() throws ParseException {
+    public void initializeDataBase() throws ParseException {
         Categoria categoria1 = new Categoria(null, "Informática");
         Categoria categoria2 = new Categoria(null, "Escritório");
         Categoria categoria3 = new Categoria(null, "Cama, mesa e banho");
