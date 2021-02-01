@@ -3,10 +3,9 @@ package com.nelioalves.cursomc.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Entity
 public class Pedido implements Serializable {
@@ -92,5 +91,21 @@ public class Pedido implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getId());
+    }
+    @Override
+    public String toString() {
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(String.format("Número: %d\n", getId()));
+        stringBuilder.append(String.format("Instante: %s\n", simpleDateFormat.format(getInstante())));
+        stringBuilder.append(String.format("Cliente: %s\n", getCliente().getNome()));
+        stringBuilder.append(String.format("Situação: %s\n", getPagamento().getEstadoPagamento().getDescricao()));
+        stringBuilder.append("Detalhes: \n");
+        for (ItemPedido itemPedido : itemPedidoSet) {
+            stringBuilder.append(itemPedido.toString() + "\n");
+        }
+        stringBuilder.append(String.format("Valor total: %s\n", numberFormat.format(getTotalPedido())));
+        return stringBuilder.toString();
     }
 }
