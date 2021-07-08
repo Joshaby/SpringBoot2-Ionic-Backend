@@ -1,14 +1,20 @@
 package com.nelioalves.cursomc.domain;
 
+import java.util.Objects;
+import javax.persistence.*;
+import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.nelioalves.cursomc.domain.enums.EstadoPagamento;
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Objects;
 
+/**
+ * Classe que representa uma entidade abstrata Pagamento
+ * @author José Henrique
+ */
 @Entity
+// Define o tipo de herança usada no BD, que nesse caso será herança por subclasse
 @Inheritance(strategy = InheritanceType.JOINED)
+// Informa que que o JSON que representa um Pagamento terá um campo adicional @type usado para definir o tipo das subclasses
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
 public abstract class Pagamento implements Serializable {
     private static final long serialVersionUID = 1L;

@@ -1,11 +1,14 @@
 package com.nelioalves.cursomc.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import java.util.Objects;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * Classe que representa um entidade Endereço
+ * @author José Henrique
+ */
 @Entity
 public class Endereco implements Serializable {
     private static final long serialVersionUID = 1L;

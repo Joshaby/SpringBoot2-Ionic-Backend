@@ -1,12 +1,16 @@
 package com.nelioalves.cursomc.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * Classe que representa uma Entidade Estado
+ * @author José Henrique
+ */
 @Entity
 public class Estado implements Serializable {
     private static final long serialVersionUID = 1L;

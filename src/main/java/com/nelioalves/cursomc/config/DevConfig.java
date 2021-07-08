@@ -8,6 +8,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import java.text.ParseException;
 
+/**
+ * Classe de configuração de ambiente Dev que usa persistência em MySQL
+ * @author José Henrique
+ */
 @Configuration
 @Profile("dev")
 public class DevConfig {

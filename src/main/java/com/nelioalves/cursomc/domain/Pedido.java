@@ -1,12 +1,16 @@
 package com.nelioalves.cursomc.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+/**
+ * Classe que representa uma entidade Pedido
+ * @author José Henrique
+ */
 @Entity
 public class Pedido implements Serializable {
     private static final long serialVersionUID = 1L;

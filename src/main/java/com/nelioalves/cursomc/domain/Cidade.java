@@ -1,9 +1,13 @@
 package com.nelioalves.cursomc.domain;
 
+import java.util.Objects;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
+/**
+ * Classe que representa uma entidade Cidade
+ * @author José Henrique
+ */
 @Entity
 public class Cidade implements Serializable {
     private static final long serialVersionUID = 1L;

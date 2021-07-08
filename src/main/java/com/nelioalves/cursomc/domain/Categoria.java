@@ -1,11 +1,15 @@
 package com.nelioalves.cursomc.domain;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.io.Serializable;
 
+/**
+ * Classe que representa uma Entidade Categoria
+ * @author José Henrique
+ */
 @Entity
 public class Categoria implements Serializable {
     private static final long serialVersionUID = 1L;

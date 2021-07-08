@@ -7,6 +7,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import java.text.ParseException;
 
+/**
+ * Classe de configuração do ambiente test que usa persistência em H2
+ * @author José Henrique
+ */
 @Configuration
 @Profile("test")
 public class DataBaseConfig {

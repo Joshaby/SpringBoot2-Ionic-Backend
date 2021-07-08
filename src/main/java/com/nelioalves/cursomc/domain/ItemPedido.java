@@ -1,17 +1,23 @@
 package com.nelioalves.cursomc.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import java.io.Serializable;
-import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Objects;
+import java.io.Serializable;
+import java.text.NumberFormat;
+import javax.persistence.Entity;
+import javax.persistence.EmbeddedId;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * Classe que representa uma entidade ItemPedido! Essa entidade terá um ItemPedidoPk que será uma chave primária composta
+ * de um Produto e um Pedido
+ * @author José Henrique
+ */
 @Entity
 public class ItemPedido implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    // Anotação indica que o ID vai ser uma classe embutida(chave primária composta) dentro do ItemPedido
     @EmbeddedId
     private ItemPedidoPK id = new ItemPedidoPK();
     private Double desconto;

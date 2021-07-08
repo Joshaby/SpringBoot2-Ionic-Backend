@@ -1,11 +1,15 @@
 package com.nelioalves.cursomc.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nelioalves.cursomc.domain.enums.TipoCliente;
+import java.util.*;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.nelioalves.cursomc.domain.enums.TipoCliente;
 
+/**
+ * Classe que representa a entidade Cliente
+ * @author José Henrique
+ */
 @Entity
 public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
