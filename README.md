@@ -25,28 +25,28 @@ Backend feito em Java para promover implementação de um sistema de compra de p
 
 ### Clientes
 
-- `/clientes` - GET: Obtem todos os clientes
+- `/clientes` - GET: Obtém todos os clientes
 - `/clientes` - POST: Cadastro de cliente
-- `/clientes/{id}` - GET: Obtem um cliente por id
+- `/clientes/{id}` - GET: Obtém um cliente por id
 - `/clientes/{id}` - PUT: Atualização de cliente por id
 - `/clientes/{id}` - DELETE: Deleção de cliente por id
-- `/clientes/pages?page=0&linesPerPage=24&direction=ASC&orderBy=id` - GET: Obtem clientes em uma página
+- `/clientes/pages?page=0&linesPerPage=24&direction=ASC&orderBy=id` - GET: Obtém clientes em uma página
 
 ### Categorias
 
-- `/categorias` - GET: Obtem todos as categorias
+- `/categorias` - GET: Obtém todos as categorias
 - `/categorias` - POST: Cadastro de categoria
-- `/categorias/{id}` - GET: Obtem uma categoria por id
+- `/categorias/{id}` - GET: Obtém uma categoria por id
 - `/categorias/{id}` - PUT: Atualização de categoria por id
 - `/categorias/{id}` - DELETE: Deleção de categoria por id
-- `/categorias/pages?page=0&linesPerPage=24&direction=ASC&orderBy=id` - GET: Obtem categorias em uma página
+- `/categorias/pages?page=0&linesPerPage=24&direction=ASC&orderBy=id` - GET: Obtém categorias em uma página
 
 ### Pedidos
 
-- `/pedidos/{id}` - GET: Obtem todos um pedido por id
+- `/pedidos/{id}` - GET: Obtém todos um pedido por id
 - `/pedidos/{id}` - POST: Cadastra um pedido por id
 
 ### Produtos
 
-- `/produtos/{id}` - GET: Obtem um pedido
-- `/produtos?nome=""&categorias=""&page=0&linesPerPage=24&direction=ASC&orderBy=nome` - GET: Obtem produtos em uma paǵina
+- `/produtos/{id}` - GET: Obtém um pedido
+- `/produtos?nome=""&categorias=""&page=0&linesPerPage=24&direction=ASC&orderBy=nome` - GET: Obtém produtos em uma paǵina
