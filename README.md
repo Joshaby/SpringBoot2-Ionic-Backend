@@ -5,7 +5,7 @@ Backend feito em Java para promover implementação de um sistema de compra de p
 
 ## Estruturação do projeto
 
-###Arquitetura
+### Arquitetura
 
 - Config: Contém classes de configuração do projeto, como tipo de persistência a ser usada
 - Domain: Contém classes que representam objetos do bando de dados
@@ -21,9 +21,9 @@ Backend feito em Java para promover implementação de um sistema de compra de p
 - application-prod.properties: Arquivo com propriedades do ambiente prod que roda no heroku
 - application-test.properties: Arquivo com propriedades do ambiente test, que roda localmente e usa hH2
 
-##Endpoints disponíveis
+## Endpoints disponíveis
 
-###Clientes
+### Clientes
 
 - `/clientes` - GET: Obtem todos os clientes
 - `/clientes` - POST: Cadastro de cliente
@@ -32,7 +32,7 @@ Backend feito em Java para promover implementação de um sistema de compra de p
 - `/clientes/{id}` - DELETE: Deleção de cliente por id
 - `/clientes/pages?page=0&linesPerPage=24&direction=ASC&orderBy=id` - GET: Obtem clientes em uma página
 
-###Categorias
+### Categorias
 
 - `/categorias` - GET: Obtem todos as categorias
 - `/categorias` - POST: Cadastro de categoria
@@ -41,12 +41,12 @@ Backend feito em Java para promover implementação de um sistema de compra de p
 - `/categorias/{id}` - DELETE: Deleção de categoria por id
 - `/categorias/pages?page=0&linesPerPage=24&direction=ASC&orderBy=id` - GET: Obtem categorias em uma página
 
-###Pedidos
+### Pedidos
 
 - `/pedidos/{id}` - GET: Obtem todos um pedido por id
 - `/pedidos/{id}` - POST: Cadastra um pedido por id
 
-###Produtos
+### Produtos
 
 - `/produtos/{id}` - GET: Obtem um pedido
 - `/produtos?nome=""&categorias=""&page=0&linesPerPage=24&direction=ASC&orderBy=nome` - GET: Obtem produtos em uma paǵina
