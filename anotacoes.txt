@@ -1,0 +1,49 @@
+Package javax.persistence (JPA) - Define uma interface para frameworks de persistência de dados que usam mapeamento
+objeto-relacional para objetos simples Java (POJOs)! Exemplo de framework objeto relacional é o Hibernate
+
+    Anotações:
+        - @Entity: Define que a classe que se tornará uma entidade em um modelo relacional! E partir dela, será gerado
+        uma relação com todas a entidades!
+
+        - @Id: Usada em atributo de classe, faz com que esse atributo se torne o id da entidade e sua chave primária
+
+        - @GeneratedValue(strategy = GenerationType.IDENTITY): Indica a como se dará a geração das chaves primarias, o
+        GenerationType.IDENTITY indica que a geração se dará pelo banco de dados
+
+        - @OneToMany(mappedBy = "") e @ManyToOne: Indica uma relação uma para muitos com outra entidade! O mappedBy indica que o map-
+        eamento do relacionameto foi feito pelo atributo da outra entidade!
+
+        - @ElementCollection
+          @CollectionTable(name = ""): Essas duas anotações criaram uma nova relação com atributos de uma entidade que
+          sejam multivalorados! O argumento name indica o nome da relação!
+
+        - @ManyToMany(mappedBy = ""): Define uma relação muitos para muitos de uma entidade com outra entidade! O agumento
+        mappedBy indica qual atributo da outra classe foi usado para fazer o mapeamento!
+
+        - @JoinTable(
+                name = "",
+                joinColunm = @JoinColumn(name = ""),
+                inverseJoinColumn = @JoinColumn(name = "")
+            ): Anotação usada com @ManyToMany para criar a relação desse relacionameto! Os argumentos name definem o nome
+            da relação ou dos atributos! @JoinColumn é usado pra definir as colunas da relação, que viram das duas enti-
+            dades! Nota, o inverseJoinColumn precisa ser o atributo que faz a o mapeamento muitos para muitos da classe
+            que contém a anotação @JoinTable, se não, ocorrerá um erro na atribuição de nomes de atributos
+
+        - @JoinColumn(name = ""): Define a chave estrangeira para referência outra entidade! Atributo name diz que nome
+        o atributo receberá na tabela! Essa anotação é bastante usada com @ManyToMany e @ManyToOne!
+
+        - @EmbeddedId: Define que o ID será uma chave primária composta, e que essas chaves viram de um objeto!
+
+        - @Embeddable: Indica que a classe é imbutivél, ou seja, fará parte de outra classe! Essa anotação é na classe
+        que se tornará uma chave primária composta! É usado com @EmbeddableId!
+
+        - @Inheritance(strategy = InheritanceType.JOINED): Define o tipo de criação de relações que contenha herança!
+        Existem 3 tipos de criação de relações com herança:
+            - InheritanceType.JOINED: Tabela por subclasse, nessa implementação, haverá a classe pai e filhas no banco,
+            mas as classes filhas teram atributos diferentes e vão referenciar o pai com sua chave primária como estran-
+            geira
+
+            - InheritanceType.TABLE_PER_CLASS: Tabela por classes concretas, ou seja, só teremos tabelas das classes filhas
+
+            - InheritanceType.SINGLE_TABLE: Tabela única, será apenas uma tabela pra representar as classes filhas, alguns
+            atributos podem ser null, o que pode acabar acarretando alguns erros
