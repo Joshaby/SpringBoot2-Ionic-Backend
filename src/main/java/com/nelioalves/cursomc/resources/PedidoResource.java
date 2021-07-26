@@ -1,14 +1,16 @@
 package com.nelioalves.cursomc.resources;
 
+import java.net.URI;
 import com.nelioalves.cursomc.domain.Pedido;
-import com.nelioalves.cursomc.services.PedidoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.nelioalves.cursomc.services.PedidoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
-
+/** Classe REST APT para endpoints /pedidos
+ *
+ */
 @RestController
 @RequestMapping(value = "/pedidos")
 public class PedidoResource {

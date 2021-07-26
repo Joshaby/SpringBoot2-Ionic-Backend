@@ -1,19 +1,23 @@
 package com.nelioalves.cursomc.resources;
 
+import java.net.URI;
+import java.util.List;
+import javax.validation.Valid;
+import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
 import com.nelioalves.cursomc.domain.Cliente;
 import com.nelioalves.cursomc.dto.ClienteDTO1;
 import com.nelioalves.cursomc.dto.ClienteDTO2;
-import com.nelioalves.cursomc.services.ClienteService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.nelioalves.cursomc.services.ClienteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import javax.validation.Valid;
-import java.net.URI;
-import java.util.List;
-import java.util.stream.Collectors;
 
+/**
+ * Classe REST API para endpoints /clientes
+ * @author José Henrique
+ */
 @RestController
 @RequestMapping(value = "/clientes")
 public class ClienteResource {

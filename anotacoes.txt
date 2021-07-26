@@ -1,5 +1,5 @@
 Package javax.persistence (JPA) - Define uma interface para frameworks de persistência de dados que usam mapeamento
-objeto-relacional para objetos simples Java (POJOs)! Exemplo de framework objeto relacional é o Hibernate
+objeto-relacional para objetos simples Java (POJOs)! Exemplo de framework objeto relacional é o Hibernate!
 
     Anotações:
         - @Entity: Define que a classe que se tornará uma entidade em um modelo relacional! E partir dela, será gerado
@@ -20,6 +20,13 @@ objeto-relacional para objetos simples Java (POJOs)! Exemplo de framework objeto
         - @ManyToMany(mappedBy = ""): Define uma relação muitos para muitos de uma entidade com outra entidade! O agumento
         mappedBy indica qual atributo da outra classe foi usado para fazer o mapeamento!
 
+        - @OneToOne(mappedBy = ""): Define uma relação um para um com alguma classe! mappedBy contém o atributo da outra classe
+        que fez o relacionameto! Na outra classe, fazer @OneToOne(cascade = CascadeType.ALL), tudo que for feito com objeto dessa
+        classe, será replicado no outro objeto
+
+        - @MapsId: Essa anotação usada bastante com @OneToOne, faz com que os Ids de dois objetos sejam mapeados, ou seja, eles
+        seram iguais!
+
         - @JoinTable(
                 name = "",
                 joinColunm = @JoinColumn(name = ""),
@@ -30,7 +37,7 @@ objeto-relacional para objetos simples Java (POJOs)! Exemplo de framework objeto
             que contém a anotação @JoinTable, se não, ocorrerá um erro na atribuição de nomes de atributos
 
         - @JoinColumn(name = ""): Define a chave estrangeira para referência outra entidade! Atributo name diz que nome
-        o atributo receberá na tabela! Essa anotação é bastante usada com @ManyToMany e @ManyToOne!
+        o atributo receberá na tabela! Essa anotação é bastante usada com @ManyToMany, @ManyToOne e @OneToOne!
 
         - @EmbeddedId: Define que o ID será uma chave primária composta, e que essas chaves viram de um objeto!
 
@@ -47,3 +54,39 @@ objeto-relacional para objetos simples Java (POJOs)! Exemplo de framework objeto
 
             - InheritanceType.SINGLE_TABLE: Tabela única, será apenas uma tabela pra representar as classes filhas, alguns
             atributos podem ser null, o que pode acabar acarretando alguns erros
+
+
+Packge javax.validation.constraints (Validações do Jakarta EE) - Contém anotações para fazer validação de atributos de
+classe
+
+    Nota: Qualquer anotação quando acha o erro, joga MethodArgumentNotValidException!
+
+    Anotações:
+        - @NotEmpty(message = ""): Verifica se um campo é vazio! Se sim, uma excecão com a mensagem definida em message será
+        jogada!
+
+        - @Email(message = ""): Verifica se um email é válido!
+
+
+Package org.hibernate.validator.constraints (Validações do Hibernate) - Contém anotações de validação do Hibernate!
+
+    Nota: Qualquer anotação quando acha o erro, joga MethodArgumentNotValidException!
+
+    Anotações:
+        - @Length(min = 99, max = 99, message = ""): Valida um atributo por tamanho! Se o atributo não tiver tamanho entre min e max,
+        uma exceção será jogada com a mensagem definida em message!
+
+Package com.fasterxml.jackson.annotation (Anotações do Jackson) - Contém algumas anotações da biblioteca JSON Jackson!
+
+    Anotações:
+        - @JsonIgnore: Anotação usada para previnir JSON cíclicos, que contenha recursividade infinita! A anotação é
+        colocada em algum get que dê início a recursividade!
+
+        - @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type"): Anotação
+        que configura um campo que virá a mais em alguma requisição, e esse campo se chama @type! Isso tudo é feito para
+        que classes filhas de uma classe pai, sejam, diferenciadas, e que a conversão JSON p/ objeto seja feita corretamente!
+        Essa configuração precisa ser feita em uma classe que contenha o método objectMapperBuilder! Na classe filha, deve 
+        ser usado a anotação JsonTypeName("name") que contém o nome que vai referencia a classe, que virá no @type na requisição
+
+        - @JsonFormat(pattern = ""): Usado para padronizar datas no JSON em uma requisição! Em pattern, é passado um padrão 
+        a se seguido, que pode ser "dd/MM/yyyy HH:mm"

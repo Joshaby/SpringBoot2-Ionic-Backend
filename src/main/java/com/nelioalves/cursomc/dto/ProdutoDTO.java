@@ -1,8 +1,12 @@
 package com.nelioalves.cursomc.dto;
 
-import com.nelioalves.cursomc.domain.Produto;
 import java.io.Serializable;
+import com.nelioalves.cursomc.domain.Produto;
 
+/**
+ * Classe DTO que contém algumas informações de um Produto!
+ * @author José Henrique
+ */
 public class ProdutoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
