@@ -21,6 +21,11 @@ public class DevConfig {
     @Value("${spring.jpa.hibernate.ddl-auto}")
     private String strategy;
 
+    /**
+     * Método para incializar o banco no MySQL ou MariaDB
+     * @return
+     * @throws ParseException
+     */
     @Bean
     public boolean initializeMariaDB() throws ParseException {
         dataBaseService.initializeDataBase();

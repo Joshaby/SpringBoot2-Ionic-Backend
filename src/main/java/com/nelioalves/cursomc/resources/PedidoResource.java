@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 /** Classe REST APT para endpoints /pedidos
- *
+ * @author José Henrique
  */
 @RestController
 @RequestMapping(value = "/pedidos")

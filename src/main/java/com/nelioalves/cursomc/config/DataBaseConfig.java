@@ -18,6 +18,11 @@ public class DataBaseConfig {
     @Autowired
     private DataBaseService dataBaseService;
 
+    /**
+     * Método para inicializar o banco H2
+     * @return um boolean
+     * @throws ParseException
+     */
     @Bean
     public boolean initializaH2() throws ParseException {
         dataBaseService.initializeDataBase();

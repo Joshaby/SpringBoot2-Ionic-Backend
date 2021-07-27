@@ -1,16 +1,20 @@
 package com.nelioalves.cursomc.services;
 
-import com.nelioalves.cursomc.domain.*;
-import com.nelioalves.cursomc.domain.enums.EstadoPagamento;
-import com.nelioalves.cursomc.domain.enums.TipoCliente;
-import com.nelioalves.cursomc.repositories.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collections;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import com.nelioalves.cursomc.domain.*;
+import com.nelioalves.cursomc.repositories.*;
+import org.springframework.stereotype.Service;
+import com.nelioalves.cursomc.domain.enums.TipoCliente;
+import com.nelioalves.cursomc.domain.enums.EstadoPagamento;
+import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * Classe de serviço para iniciar massa de dados da aplicação
+ * @author José Henrique
+ */
 @Service
 public class DataBaseService {
 
@@ -33,6 +37,10 @@ public class DataBaseService {
     @Autowired
     private ItemPedidoRepository itemPedidoRepository;
 
+    /**
+     * Método que irá instânciar as classes de domínio e adiciona-las ao banco
+     * @throws ParseException
+     */
     public void initializeDataBase() throws ParseException {
         Categoria categoria1 = new Categoria(null, "Informática");
         Categoria categoria2 = new Categoria(null, "Escritório");

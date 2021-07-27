@@ -76,7 +76,7 @@ Package org.hibernate.validator.constraints (Validações do Hibernate) - Conté
         - @Length(min = 99, max = 99, message = ""): Valida um atributo por tamanho! Se o atributo não tiver tamanho entre min e max,
         uma exceção será jogada com a mensagem definida em message!
 
-Package com.fasterxml.jackson.annotation (Anotações do Jackson) - Contém algumas anotações da biblioteca JSON Jackson!
+Package com.fasterxml.jackson.annotation (Anotações do Jackson) - Contém algumas anotações da biblioteca JSON Jackson:
 
     Anotações:
         - @JsonIgnore: Anotação usada para previnir JSON cíclicos, que contenha recursividade infinita! A anotação é
@@ -90,3 +90,35 @@ Package com.fasterxml.jackson.annotation (Anotações do Jackson) - Contém algu
 
         - @JsonFormat(pattern = ""): Usado para padronizar datas no JSON em uma requisição! Em pattern, é passado um padrão 
         a se seguido, que pode ser "dd/MM/yyyy HH:mm"
+
+
+Package org.springframework.beans.factory.annotation (Anotações do Spring Framework para classes Beans)
+
+    Anotações:
+        - @Autowired: Faz com que a responsabilidade do ciclo de vida de uma classe seja gerida pelo Spring, na verdade será gerida pelo
+        Spring IoC Container! Nesse caso a classe será um Bean, fará parte da parte backbone da aplicação! Uma classe Bean é instanciada
+        definindo suas depêndencias sem cria-lás, conceito de inversão de controle(Inversion of Control - IoC)! As classes definidas, ou
+        que são Beans, ficaram nesse IoC Container!
+
+        - @Value("${}"): Pega algum dado dos arquivos properties usado no ambiente
+
+
+Package org.springframework.context.annotation (Anotações do Spring Framework)
+
+    Anotações:
+        - @Configuration: Essa anotação indica que a classe é uma classe de configuração de ambiente! Nela podemos definir a persistência
+        por exemplo!
+
+        - @Profile: Indica qual perfil ou ambiente a classe é usada! Geralmente, essa anotação é usada com @Configuration
+
+        - @Bean: Usado em métodos, faz com que os objetos desses métodos, as instâncias, sejam gerenciados pelo Spring IoC Container
+
+Package Package org.springframework.stereotype (Anotações do Spring Framework que define funções para classes em um níve de arquitetura)
+
+    Anotações:
+        - @Service: Indica que a classe prestará serviços as outras partes da aplicação! É na classe de serviço que se encotra as regras
+        de negócio da aplicação
+
+        - @Repository: Indica que a interface servirá com ponte ao acesso ao banco de dados! O repository é acessado pelo Service
+
+        
