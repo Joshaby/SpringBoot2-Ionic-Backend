@@ -91,6 +91,8 @@ Package com.fasterxml.jackson.annotation (Anotações do Jackson) - Contém algu
         - @JsonFormat(pattern = ""): Usado para padronizar datas no JSON em uma requisição! Em pattern, é passado um padrão 
         a se seguido, que pode ser "dd/MM/yyyy HH:mm"
 
+        - @JsonTypeName(""): Indica o tipo da classe filha em um JSON!
+
 
 Package org.springframework.beans.factory.annotation (Anotações do Spring Framework para classes Beans)
 
@@ -121,4 +123,10 @@ Package Package org.springframework.stereotype (Anotações do Spring Framework 
 
         - @Repository: Indica que a interface servirá com ponte ao acesso ao banco de dados! O repository é acessado pelo Service
 
-        
+Package org.springframework.web.bind.annotation (Anotações do Spring Framework)
+
+    Anotações:
+        - @ControllerAdvice: Anotação que indica um classe que será manipuladora de exceções
+
+        - @ExceptionHandler(Class.class): Usado em métodos na classe que possuí a anotação anterior, denota qual classe esse método
+        fará o tratamento da exceção

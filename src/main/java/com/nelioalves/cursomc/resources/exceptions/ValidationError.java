@@ -1,8 +1,12 @@
 package com.nelioalves.cursomc.resources.exceptions;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
+/**
+ * Classe que representa um erro de validação, que possuí uma lista de erros
+ * @author José Henrique
+ */
 public class ValidationError extends StandardError {
     private static final long serialVersionUID = 1L;
 

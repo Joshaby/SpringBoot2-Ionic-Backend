@@ -2,6 +2,11 @@ package com.nelioalves.cursomc.resources.exceptions;
 
 import java.io.Serializable;
 
+/**
+ * Classe que representa um campo e seu erro!
+ * Usada para pegar os erros de validações das requisições
+ * @author José Henrique
+ */
 public class FieldMessage implements Serializable {
     private static final long serialVersionUID = 1L;
 

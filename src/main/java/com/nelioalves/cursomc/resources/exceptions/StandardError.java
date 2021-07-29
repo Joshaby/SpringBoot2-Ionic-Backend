@@ -2,6 +2,10 @@ package com.nelioalves.cursomc.resources.exceptions;
 
 import java.io.Serializable;
 
+/**
+ * Classe que representa um erro padrão com status, mensagem e tempo de lançamento do erro
+ * @author José Henrique
+ */
 public class StandardError implements Serializable {
     private static final long serialVersionUID = 1L;
 

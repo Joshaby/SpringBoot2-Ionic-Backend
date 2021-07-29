@@ -1,18 +1,28 @@
 package com.nelioalves.cursomc.resources.exceptions;
 
-import com.nelioalves.cursomc.services.exceptions.DataIntegrityException;
-import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import com.nelioalves.cursomc.services.exceptions.DataIntegrityException;
+import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
 
+/**
+ * Classe que representa um manipulador de exceções
+ * @author José Henrique
+ */
 @ControllerAdvice
 public class ResourceExceptionHandler {
 
+    /**
+     * Método que trata uma ObjectNotFoundException
+     * @param objectNotFoundException exceção recebida
+     * @param httpServletRequest requisição HTTP
+     * @return um JSON de resposta com a (ResponseEntity) da exceção e erro 404(Not Found)
+     */
     @ExceptionHandler(ObjectNotFoundException.class)
     public ResponseEntity<StandardError> objectNotFound(
         ObjectNotFoundException objectNotFoundException, HttpServletRequest httpServletRequest) {
@@ -24,6 +34,13 @@ public class ResourceExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(standardError);
     }
+
+    /**
+     * Método que trata uma DataIntegrityException
+     * @param dataIntegrityException exceção recebida
+     * @param httpServletRequest requisição HTTP
+     * @return Um JSON de resposta com a mensagem(ResponseEntity) da exceção e um erro HTTP 400(Bad Request)
+     */
     @ExceptionHandler(DataIntegrityException.class)
     public ResponseEntity<StandardError> dataIntegrity(
         DataIntegrityException dataIntegrityException, HttpServletRequest httpServletRequest) {
@@ -35,6 +52,13 @@ public class ResourceExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(standardError);
     }
+
+    /**
+     * Método que trata uma MethodArgumentNotValidException
+     * @param methodArgumentNotValidException exceção recebida
+     * @param httpServletRequest requisição HTTP
+     * @return Um JSON como resposta(RespondeEntity) com a mensagem da exceção e erro HTTP 400(Bad Request)
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ValidationError> dataValidation(
         MethodArgumentNotValidException methodArgumentNotValidException, HttpServletRequest httpServletRequest) {
