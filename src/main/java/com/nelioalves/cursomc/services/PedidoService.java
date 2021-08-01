@@ -1,19 +1,23 @@
 package com.nelioalves.cursomc.services;
 
-import com.nelioalves.cursomc.domain.ItemPedido;
-import com.nelioalves.cursomc.domain.PagamentoComBoleto;
-import com.nelioalves.cursomc.domain.Pedido;
-import com.nelioalves.cursomc.domain.enums.EstadoPagamento;
-import com.nelioalves.cursomc.repositories.ItemPedidoRepository;
-import com.nelioalves.cursomc.repositories.PagamentoRepository;
-import com.nelioalves.cursomc.repositories.PedidoRepository;
-import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 import java.util.Optional;
+import com.nelioalves.cursomc.domain.Pedido;
+import org.springframework.stereotype.Service;
+import com.nelioalves.cursomc.domain.ItemPedido;
+import com.nelioalves.cursomc.domain.PagamentoComBoleto;
+import com.nelioalves.cursomc.domain.enums.EstadoPagamento;
+import com.nelioalves.cursomc.repositories.PedidoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.nelioalves.cursomc.repositories.PagamentoRepository;
+import org.springframework.transaction.annotation.Transactional;
+import com.nelioalves.cursomc.repositories.ItemPedidoRepository;
+import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
 
+/**
+ * Classe de serviço com regras de negócios de Pedidos
+ * @author José Henrique
+ */
 @Service
 public class PedidoService {
 
@@ -30,11 +34,24 @@ public class PedidoService {
     @Autowired
     private ClienteService clienteService;
 
+    /**
+     * Procura um Pedido por id
+     * @param id Id do Pedido a ser procurado
+     * @throws ObjectNotFoundException
+     * @return Um Pedido
+     */
     public Pedido find(Integer id) {
         Optional<Pedido> pedidoOptional = pedidoRepository.findById(id);
         return pedidoOptional.orElseThrow(
             () -> new ObjectNotFoundException(String.format("Objeto %d não encontrado! Tipo: %s", id, Pedido.class.getName())));
     }
+
+    /**
+     * Insere um Pedido
+     * Além do Pedido ser salvo, será salvo um Pagamento e um ItemPedido
+     * @param pedido Pedido a ser inserido
+     * @return O Pedido inserido
+     */
     @Transactional
     public Pedido insert(Pedido pedido) {
         pedido.setId(null);

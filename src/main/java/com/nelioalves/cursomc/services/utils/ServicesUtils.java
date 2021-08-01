@@ -1,8 +1,12 @@
 package com.nelioalves.cursomc.services.utils;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
+/**
+ * Classe com métodos estáticos úteis
+ * @author José Henrique
+ */
 public class ServicesUtils {
 
     private static int mod(int dividendo, int divisor) {
@@ -15,6 +19,12 @@ public class ServicesUtils {
         }
         return numbersList;
     }
+
+    /**
+     * Verifica se o CPF é válido
+     * @param cpf CPF a ser verificado
+     * @return um boolean
+     */
     public static boolean isCPF(String cpf) {
         if (cpf.length() != 11) return false;
         final List<Integer> numbers = toListInteger(cpf);
@@ -34,6 +44,11 @@ public class ServicesUtils {
         return false;
     }
 
+    /**
+     * Verifica se o CNPJ é válido
+     * @param cnpj CNPJ a ser verificado
+     * @return um boolean
+     */
     public static boolean isCNPJ(String cnpj) {
         if (cnpj.length() != 14) return false;
         final List<Integer> numbers = toListInteger(cnpj);

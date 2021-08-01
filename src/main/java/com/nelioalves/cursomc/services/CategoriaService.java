@@ -25,7 +25,7 @@ public class CategoriaService {
     private CategoriaRepository categoriaRepository;
 
     /**
-     * Procura uma Categoria
+     * Procura uma Categoria por id
      * @param id Id da Categoria a ser procurada
      * @throws ObjectNotFoundException
      * @return A Categoria encontrada
@@ -73,7 +73,7 @@ public class CategoriaService {
 
     /**
      * Procura todas as Categorias
-     * @return Um lista de Categorias encotradas
+     * @return Uma lista de Categorias encotradas
      */
     public List<Categoria> findAll() {
         return categoriaRepository.findAll();
