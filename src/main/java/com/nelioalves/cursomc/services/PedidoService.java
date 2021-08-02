@@ -33,6 +33,8 @@ public class PedidoService {
     private ProdutoService produtoService;
     @Autowired
     private ClienteService clienteService;
+    @Autowired
+    private EmailService emailService;
 
     /**
      * Procura um Pedido por id
@@ -48,7 +50,8 @@ public class PedidoService {
 
     /**
      * Insere um Pedido
-     * Além do Pedido ser salvo, será salvo um Pagamento e um ItemPedido
+     * Além do Pedido ser salvo, será salvo um Pagamento e um ItemPedido e um email será enviado com o Pedido para o
+     * Cliente
      * @param pedido Pedido a ser inserido
      * @return O Pedido inserido
      */
@@ -72,6 +75,7 @@ public class PedidoService {
             itemPedido.setPedido(pedido);
         }
         itemPedidoRepository.saveAll(pedido.getItemPedidoSet());
+        emailService.sendOrderConfirmationEmail(pedido);
         return pedido;
     }
 }

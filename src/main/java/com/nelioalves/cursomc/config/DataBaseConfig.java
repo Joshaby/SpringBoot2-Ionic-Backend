@@ -1,6 +1,9 @@
 package com.nelioalves.cursomc.config;
 
 import java.text.ParseException;
+
+import com.nelioalves.cursomc.services.EmailService;
+import com.nelioalves.cursomc.services.MockEmailService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import com.nelioalves.cursomc.services.DataBaseService;
@@ -27,5 +30,14 @@ public class DataBaseConfig {
     public boolean initializaH2() throws ParseException {
         dataBaseService.initializeDataBase();
         return true;
+    }
+
+    /**
+     * Método pra retornar um Bean de EmailService
+     * @return Um EmailService
+     */
+    @Bean
+    public EmailService getEmailService() {
+        return new MockEmailService();
     }
 }
