@@ -1,12 +1,12 @@
 package com.nelioalves.cursomc.config;
 
 import java.text.ParseException;
-
-import com.nelioalves.cursomc.services.EmailService;
-import com.nelioalves.cursomc.services.MockEmailService;
 import org.springframework.context.annotation.Bean;
+import com.nelioalves.cursomc.services.EmailService;
 import org.springframework.context.annotation.Profile;
 import com.nelioalves.cursomc.services.DataBaseService;
+import com.nelioalves.cursomc.services.SmtpEmailService;
+import com.nelioalves.cursomc.services.MockEmailService;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -38,6 +38,7 @@ public class DataBaseConfig {
      */
     @Bean
     public EmailService getEmailService() {
-        return new MockEmailService();
+//        return new MockEmailService();
+        return new SmtpEmailService();
     }
 }
