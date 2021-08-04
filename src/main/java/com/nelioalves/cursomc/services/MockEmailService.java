@@ -2,6 +2,7 @@ package com.nelioalves.cursomc.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import javax.mail.internet.MimeMessage;
 import org.springframework.mail.SimpleMailMessage;
 
 /**
@@ -20,6 +21,17 @@ public class MockEmailService extends AbstractEmailService {
     public void sendEmail(SimpleMailMessage simpleMailMessage) {
         LOG.info("Enviando email...");
         LOG.info(simpleMailMessage.toString());
+        LOG.info("Email enviado!");
+    }
+
+    /**
+     * Envio simulado de email com HTML
+     * @param mimeMessage Email a ser enviado
+     */
+    @Override
+    public void sendHTMLEmail(MimeMessage mimeMessage) {
+        LOG.info("Enviando email com HTML...");
+        LOG.info(mimeMessage.toString());
         LOG.info("Email enviado!");
     }
 }

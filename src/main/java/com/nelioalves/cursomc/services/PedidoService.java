@@ -71,12 +71,12 @@ public class PedidoService {
         for (ItemPedido itemPedido : pedido.getItemPedidoSet()) {
             itemPedido.setDesconto(0.0);
             itemPedido.setProduto(produtoService.find(itemPedido.getProduto().getId()));
-            System.out.println("Oi" + produtoService.find(itemPedido.getProduto().getId()));
             itemPedido.setPreco(itemPedido.getProduto().getPreco());
             itemPedido.setPedido(pedido);
         }
         itemPedidoRepository.saveAll(pedido.getItemPedidoSet());
-        emailService.sendOrderConfirmationEmail(pedido);
+//        emailService.sendOrderConfirmationEmail(pedido);
+        emailService.sendOrderConfirmationHTMLEmail(pedido);
         return pedido;
     }
 }
