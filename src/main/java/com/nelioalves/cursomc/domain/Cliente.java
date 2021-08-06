@@ -18,11 +18,11 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+    @Column(unique = true)
     private String email;
     private String cpfOuCnpj;
     private Integer tipoCliente;
     private String senha;
-
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Endereco> enderecoList = new ArrayList<>();
     @ElementCollection
