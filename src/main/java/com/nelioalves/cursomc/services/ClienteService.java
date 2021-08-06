@@ -16,6 +16,7 @@ import com.nelioalves.cursomc.repositories.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.nelioalves.cursomc.services.exceptions.DataIntegrityException;
 import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
 
@@ -30,6 +31,8 @@ public class ClienteService {
     private ClienteRepositoy clienteRepositoy;
     @Autowired
     private EnderecoRepository enderecoRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     /**
      * Procura um Cliente por id
@@ -110,7 +113,8 @@ public class ClienteService {
      * @return Um Cliente
      */
     public Cliente toCliente(ClienteDTO1 clienteDTO1) {
-        return new Cliente(clienteDTO1.getId(), clienteDTO1.getNome(), clienteDTO1.getEmail(), null, null);
+        return new Cliente(
+                clienteDTO1.getId(), clienteDTO1.getNome(), clienteDTO1.getEmail(), null, null, null);
     }
 
     /**
@@ -121,7 +125,7 @@ public class ClienteService {
     public Cliente toCliente(ClienteDTO2 clienteDTO2) {
         Cliente cliente = new Cliente(
             null, clienteDTO2.getNome(), clienteDTO2.getEmail(), clienteDTO2.getCpfOuCnpj(),
-            TipoCliente.toEnum(clienteDTO2.getTipoCliente()));
+            TipoCliente.toEnum(clienteDTO2.getTipoCliente()), bCryptPasswordEncoder.encode(clienteDTO2.getSenha()));
         Cidade cidade = new Cidade(clienteDTO2.getCidadeId(), null, null);
         Endereco endereco = new Endereco(null, clienteDTO2.getLogradouro(), clienteDTO2.getNumero(),
             clienteDTO2.getComplemento(), clienteDTO2.getBairro(), clienteDTO2.getCep(), cliente, cidade);

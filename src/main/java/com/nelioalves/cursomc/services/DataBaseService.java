@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 import com.nelioalves.cursomc.domain.enums.TipoCliente;
 import com.nelioalves.cursomc.domain.enums.EstadoPagamento;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * Classe de serviço para iniciar massa de dados da aplicação
+ *
  * @author José Henrique
  */
 @Service
@@ -36,6 +38,8 @@ public class DataBaseService {
     private PagamentoRepository pagamentoRepository;
     @Autowired
     private ItemPedidoRepository itemPedidoRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     /**
      * Método que irá instânciar as classes de domínio e adiciona-las ao banco
@@ -50,17 +54,17 @@ public class DataBaseService {
         Categoria categoria6 = new Categoria(null, "Decoração");
         Categoria categoria7 = new Categoria(null, "Perfumaria");
 
-        Produto produto1 =  new Produto(null, "Computador", 2000.00);
-        Produto produto2 =  new Produto(null, "Impressora", 800.00);
-        Produto produto3 =  new Produto(null, "Mouse", 80.00);
-        Produto produto4 =  new Produto(null, "Mesa de escritório", 300.00);
-        Produto produto5 =  new Produto(null, "Toalha", 50.00);
-        Produto produto6 =  new Produto(null, "Colcha", 200.00);
-        Produto produto7 =  new Produto(null, "TV True Color", 1200.00);
-        Produto produto8 =  new Produto(null, "Roçadeira", 80.00);
-        Produto produto9 =  new Produto(null, "Abajour", 100.00);
-        Produto produto10 =  new Produto(null, "Pendente", 180.00);
-        Produto produto11 =  new Produto(null, "Shampoo", 90.00);
+        Produto produto1 = new Produto(null, "Computador", 2000.00);
+        Produto produto2 = new Produto(null, "Impressora", 800.00);
+        Produto produto3 = new Produto(null, "Mouse", 80.00);
+        Produto produto4 = new Produto(null, "Mesa de escritório", 300.00);
+        Produto produto5 = new Produto(null, "Toalha", 50.00);
+        Produto produto6 = new Produto(null, "Colcha", 200.00);
+        Produto produto7 = new Produto(null, "TV True Color", 1200.00);
+        Produto produto8 = new Produto(null, "Roçadeira", 80.00);
+        Produto produto9 = new Produto(null, "Abajour", 100.00);
+        Produto produto10 = new Produto(null, "Pendente", 180.00);
+        Produto produto11 = new Produto(null, "Shampoo", 90.00);
 
         categoria1.getProdutosList().addAll(Arrays.asList(produto1, produto2, produto3));
         categoria2.getProdutosList().addAll(Arrays.asList(produto2, produto4));
@@ -98,7 +102,7 @@ public class DataBaseService {
         estadoRepository.saveAll(Arrays.asList(estado1, estado2));
         cidadeRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3));
 
-        Cliente cliente1 = new Cliente(null, "Maria Silva", "josehenriquebrito55@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);
+        Cliente cliente1 = new Cliente(null, "Maria Silva", "josehenriquebrito55@gmail.com", "36378912377", TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("12345"));
         cliente1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
 
         Endereco endereco1 = new Endereco(null, "Rua Flores", "300", "Apto 203", "Jardim", "38220834", cliente1, cidade1);
