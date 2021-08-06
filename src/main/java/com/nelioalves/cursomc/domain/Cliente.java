@@ -3,6 +3,8 @@ package com.nelioalves.cursomc.domain;
 import java.util.*;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.stream.Collectors;
+import com.nelioalves.cursomc.domain.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nelioalves.cursomc.domain.enums.TipoCliente;
 
@@ -23,11 +25,14 @@ public class Cliente implements Serializable {
     private String cpfOuCnpj;
     private Integer tipoCliente;
     private String senha;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "PERFIS")
+    private Set<Integer> perfilSet = new HashSet<>();
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Endereco> enderecoList = new ArrayList<>();
     @ElementCollection
     @CollectionTable(name = "TELEFONES")
-    private Set<String> telefones =  new HashSet<>();
+    private Set<String> telefonesSet =  new HashSet<>();
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidoList = new ArrayList<>();
 
@@ -38,14 +43,12 @@ public class Cliente implements Serializable {
         this.cpfOuCnpj = cpfOuCnpj;
         this.tipoCliente = (tipoCliente == null) ? null : tipoCliente.getTipo();
         this.senha = senha;
+        addPerfil(Perfil.CLIENTE);
     }
     public Cliente() {
-
+        addPerfil(Perfil.CLIENTE);
     }
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
     public Integer getId() {
         return id;
     }
@@ -83,17 +86,23 @@ public class Cliente implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+    public void addPerfil(Perfil perfil) {
+        perfilSet.add(perfil.getTipo());
+    }
+    public Set<Perfil> getPerfilSet() {
+        return perfilSet.stream().map(Perfil::toEnum).collect(Collectors.toSet());
+    }
     public List<Endereco> getEnderecoList() {
         return enderecoList;
     }
     public void setEnderecoList(List<Endereco> enderecoList) {
         this.enderecoList = enderecoList;
     }
-    public Set<String> getTelefones() {
-        return telefones;
+    public Set<String> getTelefonesSet() {
+        return telefonesSet;
     }
-    public void setTelefones(Set<String> telefones) {
-        this.telefones = telefones;
+    public void setTelefonesSet(Set<String> telefones) {
+        this.telefonesSet = telefones;
     }
     @JsonIgnore
     public List<Pedido> getPedidoList() {

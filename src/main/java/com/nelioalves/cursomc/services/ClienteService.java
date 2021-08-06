@@ -130,11 +130,11 @@ public class ClienteService {
         Endereco endereco = new Endereco(null, clienteDTO2.getLogradouro(), clienteDTO2.getNumero(),
             clienteDTO2.getComplemento(), clienteDTO2.getBairro(), clienteDTO2.getCep(), cliente, cidade);
         cliente.getEnderecoList().add(endereco);
-        cliente.getTelefones().add(clienteDTO2.getTelefone1());
+        cliente.getTelefonesSet().add(clienteDTO2.getTelefone1());
         if (clienteDTO2.getTelefone2() != null)
-            cliente.getTelefones().add(clienteDTO2.getTelefone2());
+            cliente.getTelefonesSet().add(clienteDTO2.getTelefone2());
         if (clienteDTO2.getTelefone3() != null)
-            cliente.getTelefones().add(clienteDTO2.getTelefone3());
+            cliente.getTelefonesSet().add(clienteDTO2.getTelefone3());
         return cliente;
     }
 
