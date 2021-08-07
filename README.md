@@ -49,4 +49,7 @@ Backend feito em Java para promover implementação de um sistema de compra de p
 ### Produtos
 
 - `/produtos/{id}` - GET: Obtém um pedido
-- `/produtos?nome=""&categorias=""&page=0&linesPerPage=24&direction=ASC&orderBy=nome` - GET: Obtém produtos em uma paǵina
+- `/produtos?nome=""&categorias=""&page=0&linesPerPage=24&direction=ASC&orderBy=nome` - GET: Obtém produtos em uma página
+
+### Login
+- `/login` - POST: Faz login de um usuário com email e senha
