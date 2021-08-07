@@ -12,6 +12,7 @@ Backend feito em Java para promover implementação de um sistema de compra de p
 - Dto: Contém objetos usados para fazer requisições
 - Repositories: Contém interfaces que realizaram consultas no banco de dados
 - Resource: API Rest do projeto junto com classes úteis e tratamento de execeção
+- Security: Contém classes, classes úteis para prover segurança de acesso aos endpoints da aplicação
 - Services: Contém classes com regras de negócio junto com classes úteis e que acessam os repositories
 
 ### Properties
