@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.nelioalves.cursomc.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 /**
@@ -79,6 +80,7 @@ public class ClienteResource {
      * Procura todos os Clientes
      * @return Um JSON de resposta com os Clientes no corpo e com status HTTP ok(200)
      */
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<ClienteDTO1>> findAll() {
         return ResponseEntity.ok().body(
@@ -93,6 +95,7 @@ public class ClienteResource {
      * @param orderBy Ordem da página - valor padrão: "id"
      * @return Um JSON como resposta(ResponseEntity) com a página no corpo e com status HTTP ok(200)
      */
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @RequestMapping(value ="/pages", method = RequestMethod.GET)
     public ResponseEntity<Page<ClienteDTO1>> findPage(
         @RequestParam(value = "page", defaultValue = "0") Integer page,

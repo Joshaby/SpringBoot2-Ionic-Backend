@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import com.nelioalves.cursomc.domain.Categoria;
 import com.nelioalves.cursomc.dto.CategoriaDTO;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.nelioalves.cursomc.services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,7 @@ public class CategoriaResource {
      * @return Um JSON de resposta(ResponseEntity) com corpo vazio e com URL da Categoria adicionada no header
      * Usa o status HTTP created(201)
      */
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO categoriaDTO) {
         Categoria categoria = categoriaService.toCategoria(categoriaDTO);
@@ -56,6 +58,7 @@ public class CategoriaResource {
      * @param id Id da Categoria a ser atualizada
      * @return Um JSON de resposta sem corpo e com status HTTP no contente(204)
      */
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Categoria> update(@Valid @RequestBody CategoriaDTO categoriaDTO, @PathVariable Integer id) {
         categoriaDTO.setId(id);
@@ -69,6 +72,7 @@ public class CategoriaResource {
      * @param id Id da Categoria a ser removida
      * @return Um JSON de resposta sem corpo e com status HTTP no contente(204)
      */
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         categoriaService.delete(id);
