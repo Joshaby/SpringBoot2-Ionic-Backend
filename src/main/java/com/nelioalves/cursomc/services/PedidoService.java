@@ -58,7 +58,7 @@ public class PedidoService {
      * @return O Pedido inserido
      */
     @Transactional
-    public Pedido insert(Pedido pedido) throws AuthenticationException {
+    public Pedido insert(Pedido pedido) {
         pedido.setId(null);
         pedido.setInstante(new Date());
         pedido.setCliente(clienteService.find(pedido.getCliente().getId()));

@@ -47,7 +47,7 @@ public class ClienteService {
      */
     public Cliente find(Integer id) {
         UserDetailsImpl userDetailsImpl = UserService.getUserAuthenticated();
-        if (userDetailsImpl == null || !userDetailsImpl.hasHole(Perfil.ADMIN)|| id.equals(userDetailsImpl.getId())) {
+        if ((userDetailsImpl == null || !userDetailsImpl.hasHole(Perfil.ADMIN)) && !id.equals(userDetailsImpl.getId())) {
             throw new AuthorizationException("Acesso negado");
         }
         Optional<Cliente> optionalCliente = clienteRepositoy.findById(id);
