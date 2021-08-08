@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.nelioalves.cursomc.repositories.ItemPedidoRepository;
 import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
 
+import javax.naming.AuthenticationException;
+
 /**
  * Classe de serviço com regras de negócios de Pedidos
  * @author José Henrique
@@ -56,7 +58,7 @@ public class PedidoService {
      * @return O Pedido inserido
      */
     @Transactional
-    public Pedido insert(Pedido pedido) {
+    public Pedido insert(Pedido pedido) throws AuthenticationException {
         pedido.setId(null);
         pedido.setInstante(new Date());
         pedido.setCliente(clienteService.find(pedido.getCliente().getId()));

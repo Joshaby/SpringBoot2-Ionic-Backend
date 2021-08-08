@@ -2,6 +2,7 @@ package com.nelioalves.cursomc.resources;
 
 import java.net.URI;
 import java.util.List;
+import javax.naming.AuthenticationException;
 import javax.validation.Valid;
 import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
@@ -32,7 +33,7 @@ public class ClienteResource {
      * @return Um JSON de resposta(ResponseEntity) com o Cliente no corpo e com status HTTP ok(200)
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Cliente> find(@PathVariable Integer id) {
+    public ResponseEntity<Cliente> find(@PathVariable Integer id) throws AuthenticationException {
         Cliente cliente = clienteService.find(id);
         return ResponseEntity.ok().body(cliente);
     }

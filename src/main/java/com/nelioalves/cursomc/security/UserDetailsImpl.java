@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 /**
- * Classe que representa um Cliente com informações básica
+ * Classe que representa um usuário com informações básica que está logado
  * @author José Henrique
  */
 public class UserDetailsImpl implements UserDetails {
@@ -64,5 +64,33 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getSenha() {
+        return senha;
+    }
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    /**
+     * Verifica se o usuário possui algum Perfil
+     * @param perfil Perfil a ser verificado
+     * @return Um boolean
+     */
+    public boolean hasHole(Perfil perfil) {
+        return grantedAuthorities.contains(new SimpleGrantedAuthority(perfil.getDescricao()));
     }
 }

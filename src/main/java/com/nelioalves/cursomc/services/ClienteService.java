@@ -1,6 +1,7 @@
 package com.nelioalves.cursomc.services;
 
 import java.util.*;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Page;
 import com.nelioalves.cursomc.domain.Cidade;
@@ -9,7 +10,9 @@ import com.nelioalves.cursomc.domain.Endereco;
 import org.springframework.stereotype.Service;
 import com.nelioalves.cursomc.dto.ClienteDTO2;
 import com.nelioalves.cursomc.dto.ClienteDTO1;
+import com.nelioalves.cursomc.domain.enums.Perfil;
 import org.springframework.data.domain.PageRequest;
+import com.nelioalves.cursomc.security.UserDetailsImpl;
 import com.nelioalves.cursomc.domain.enums.TipoCliente;
 import com.nelioalves.cursomc.repositories.ClienteRepositoy;
 import com.nelioalves.cursomc.repositories.EnderecoRepository;
@@ -18,6 +21,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.nelioalves.cursomc.services.exceptions.DataIntegrityException;
+import com.nelioalves.cursomc.services.exceptions.AuthorizationException;
 import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
 
 /**
@@ -38,9 +42,14 @@ public class ClienteService {
      * Procura um Cliente por id
      * @param id id do Cliente a ser procurado
      * @throws ObjectNotFoundException
+     * @throws AuthorizationException
      * @return Um Cliente
      */
     public Cliente find(Integer id) {
+        UserDetailsImpl userDetailsImpl = UserService.getUserAuthenticated();
+        if (userDetailsImpl == null || !userDetailsImpl.hasHole(Perfil.ADMIN)|| id.equals(userDetailsImpl.getId())) {
+            throw new AuthorizationException("Acesso negado");
+        }
         Optional<Cliente> optionalCliente = clienteRepositoy.findById(id);
         return optionalCliente.orElseThrow(
             () -> new ObjectNotFoundException(String.format("Objeto %d não encontrado! Tipo: %s", id, Cliente.class.getName())));
