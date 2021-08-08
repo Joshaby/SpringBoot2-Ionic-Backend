@@ -1,8 +1,6 @@
 package com.nelioalves.cursomc.config;
 
 import java.util.Arrays;
-
-import com.nelioalves.cursomc.security.JWTAuthenticationFilter;
 import org.springframework.http.HttpMethod;
 import org.springframework.core.env.Environment;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +9,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.nelioalves.cursomc.security.JWTAuthorizationFilter;
+import com.nelioalves.cursomc.security.JWTAuthenticationFilter;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -42,7 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String[] PUBLIC_MATCHERS_GET = {
             "/produtos/**",
             "/categorias/**",
-            "/clientes/**"
     };
 
     /**
@@ -60,6 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
                 .antMatchers(PUBLIC_MATCHERS).permitAll()
                 .anyRequest().authenticated();
+        httpSecurity.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
         httpSecurity.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
         httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
