@@ -56,7 +56,7 @@ public class CategoriaResource {
      * Atualiza um Categoria
      * @param categoriaDTO Atualizaçãoe em forma de Categoria
      * @param id Id da Categoria a ser atualizada
-     * @return Um JSON de resposta sem corpo e com status HTTP no contente(204)
+     * @return Um JSON de resposta sem corpo e com status HTTP no content(204)
      */
     @PreAuthorize("hasAnyRole('ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
