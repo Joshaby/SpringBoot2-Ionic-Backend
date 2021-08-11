@@ -1,6 +1,14 @@
 Package javax.persistence (JPA) - Define uma interface para frameworks de persistência de dados que usam mapeamento
 objeto-relacional para objetos simples Java (POJOs)! Exemplo de framework objeto relacional é o Hibernate!
 
+    Nota:
+        O fetch nas anotações de relacionamentos e criação de relação de atributos multivalorados, possui dois tipo:
+            - FetchType.LAZY: Faz com que determinados objetos dentro de algum objeto, não sejam chamados até que você chame-os explicitamente
+            - FetchType.EAGER: Ao contrário do LAZY, carrega os objetos mesmo que você não vá usar
+        
+        Lazy necessariamente é mais rápido que o Eager
+        Suas devidaa funções só são vista fazendo JPQL e colocando-o em um função de respositório
+
     Anotações:
         - @Entity: Define que a classe que se tornará uma entidade em um modelo relacional! E partir dela, será gerado uma relação com todas a entidades!
 
@@ -8,14 +16,14 @@ objeto-relacional para objetos simples Java (POJOs)! Exemplo de framework objeto
 
         - @GeneratedValue(strategy = GenerationType.IDENTITY): Indica a como se dará a geração das chaves primarias, o GenerationType.IDENTITY indica que a geração se dará pelo banco de dados
 
-        - @OneToMany(mappedBy = "") e @ManyToOne: Indica uma relação uma para muitos com outra entidade! O mappedBy indica que o mapeamento do relacionameto foi feito pelo atributo da outra entidade!
+        - @OneToMany(mappedBy = "",fetch = ) e @ManyToOne: Indica uma relação uma para muitos com outra entidade! O mappedBy indica que o mapeamento do relacionameto foi feito pelo atributo da outra entidade!
 
-        - @ElementCollection
+        - @ElementCollection(fetch = )
           @CollectionTable(name = ""): Essas duas anotações criam uma nova relação com atributos de uma entidade que sejam multivalorados! O argumento name indica o nome da relação!
 
-        - @ManyToMany(mappedBy = ""): Define uma relação muitos para muitos de uma entidade com outra entidade! O agumento mappedBy indica qual atributo da outra classe foi usado para fazer o mapeamento!
+        - @ManyToMany(mappedBy = "",fetch = ): Define uma relação muitos para muitos de uma entidade com outra entidade! O agumento mappedBy indica qual atributo da outra classe foi usado para fazer o mapeamento!
 
-        - @OneToOne(mappedBy = ""): Define uma relação um para um com alguma classe! mappedBy contém o atributo da outra classe que fez o relacionameto! Na outra classe, fazer @OneToOne(cascade = CascadeType.ALL), tudo que for feito com objeto dessa classe, será replicado no outro objeto
+        - @OneToOne(mappedBy = "",fetch = ): Define uma relação um para um com alguma classe! mappedBy contém o atributo da outra classe que fez o relacionameto! Na outra classe, fazer @OneToOne(cascade = CascadeType.ALL), tudo que for feito com objeto dessa classe, será replicado no outro objeto
 
         - @MapsId: Essa anotação usada bastante com @OneToOne, faz com que os Ids de dois objetos sejam mapeados, ou seja, elesseram iguais!
 
@@ -39,7 +47,7 @@ objeto-relacional para objetos simples Java (POJOs)! Exemplo de framework objeto
             - InheritanceType.SINGLE_TABLE: Tabela única, será apenas uma tabela pra representar as classes filhas, alguns atributos podem ser null, o que pode acabar acarretando alguns erros
 
 
-Packge javax.validation.constraints (Validações do Jakarta EE) - Contém anotações para fazer validação de atributos de
+Packge javax.validation.constraints (Jakarta EE) - Contém anotações para fazer validação de atributos de
 classe
 
     Nota: Qualquer anotação quando acha o erro, joga MethodArgumentNotValidException!
@@ -51,20 +59,20 @@ classe
         - @Email(message = ""): Verifica se um email é válido!
 
 
-Package javax.validation (Validações do Jakarta EE)
+Package javax.validation (Jakarta EE)
 
     Anotações:
         - @Valid: Indica que a requisição feita deve ser validada! Ex: @Valid @RequestBody Cliente cliente! Será verificado os campos na classe que possuem anotações de validações!
 
 
-Package org.hibernate.validator.constraints (Validações do Hibernate) - Contém anotações de validação do Hibernate!
+Package org.hibernate.validator.constraints (Hibernate) - Contém anotações de validação do Hibernate!
 
     Nota: Qualquer anotação quando acha o erro, joga MethodArgumentNotValidException!
 
     Anotações:
         - @Length(min = 99, max = 99, message = ""): Valida um atributo por tamanho! Se o atributo não tiver tamanho entre min e max, uma exceção será jogada com a mensagem definida em message!
 
-Package com.fasterxml.jackson.annotation (Anotações do Jackson) - Contém algumas anotações da biblioteca JSON Jackson:
+Package com.fasterxml.jackson.annotation (Jackson) - Contém algumas anotações da biblioteca JSON Jackson:
 
     Anotações:
         - @JsonIgnore: Anotação usada para previnir JSON cíclicos, que contenha recursividade infinita! A anotação é
@@ -77,7 +85,7 @@ Package com.fasterxml.jackson.annotation (Anotações do Jackson) - Contém algu
         - @JsonTypeName(""): Indica o tipo da classe filha em um JSON!
 
 
-Package org.springframework.beans.factory.annotation (Anotações do Spring Framework para classes Beans)
+Package org.springframework.beans.factory.annotation (Spring Framework)
 
     Anotações:
         - @Autowired: Faz com que a responsabilidade do ciclo de vida de uma classe seja gerida pelo Spring, na verdade será gerida pelo Spring IoC Container! Nesse caso a classe será um Bean, fará parte da parte backbone da aplicação! Uma classe Bean é instanciada definindo suas depêndencias sem cria-lás, conceito de inversão de controle(Inversion of Control - IoC)! As classes definidas, ou que são Beans, ficaram nesse IoC Container!
@@ -85,7 +93,7 @@ Package org.springframework.beans.factory.annotation (Anotações do Spring Fram
         - @Value("${}"): Pega algum dado dos arquivos properties usado no ambiente
 
 
-Package org.springframework.context.annotation (Anotações do Spring Framework)
+Package org.springframework.context.annotation (Spring Framework)
 
     Anotações:
         - @Configuration: Essa anotação indica que a classe é uma classe de configuração de ambiente! Nela podemos definir a persistência por exemplo!
@@ -95,7 +103,7 @@ Package org.springframework.context.annotation (Anotações do Spring Framework)
         - @Bean: Usado em métodos, faz com que os objetos desses métodos, as instâncias, sejam gerenciados pelo Spring IoC Container
 
 
-Package Package org.springframework.stereotype (Anotações do Spring Framework que define funções para classes em um níve de arquitetura)
+Package Package org.springframework.stereotype (Spring Framework) - Define funções para classes em um níve de arquitetura
 
     Anotações:
         - @Service: Indica que a classe prestará serviços as outras partes da aplicação! É na classe de serviço que se encotra as regras de negócio da aplicação
@@ -103,7 +111,7 @@ Package Package org.springframework.stereotype (Anotações do Spring Framework 
         - @Repository: Indica que a interface servirá com ponte ao acesso ao banco de dados! O repository é acessado pelo Service
 
 
-Package org.springframework.web.bind.annotation (Anotações do Spring Framework)
+Package org.springframework.web.bind.annotation (Spring Framework)
 
     Anotações:
         - @ControllerAdvice: Anotação que indica um classe que será manipuladora de exceções
@@ -119,7 +127,17 @@ Package org.springframework.web.bind.annotation (Anotações do Spring Framework
         - @ResquestBody: Transforma o JSON de requisição em um Objeto! Ex: @RequestBody Cliente cliente
 
 
-Package org.springframework.transaction.annotation (Anotações do Spring Framework de acesso a banco de dados)
+Package org.springframework.transaction.annotation (Spring Framework)
 
     Anotações:
         - @Transactional: Como próprio nome diz, essa anotação implementa uma transação no banco de dados! Uma transação contém um begin(), commit() e um rollback()! Em um transação, ou as modificações são feitas, ou nenhuma é feita Uma transação é um método atómico!
+
+Package org.springframework.security.access.prepost (Spring Security)
+
+    Anotações:
+        - @PreAuthorize("hasAnyRole()"): Libera acesso de um endpoint para um tipo de usuário que é passado como argumento no hasAnyRole
+
+Package org.springframework.security.config.annotation.method.configuration (Spring Security)
+
+    Anotações:
+        - @EnableGlobalMethodSecurity(prePostEnabled = ): Habilita checagem de acesso a endpoints

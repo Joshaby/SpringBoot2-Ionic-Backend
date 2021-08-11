@@ -1,7 +1,6 @@
 package com.nelioalves.cursomc.services;
 
 import java.util.*;
-
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Page;
 import com.nelioalves.cursomc.domain.Cidade;
