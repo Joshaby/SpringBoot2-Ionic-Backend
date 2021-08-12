@@ -40,6 +40,11 @@ public class AuthResource {
         return ResponseEntity.noContent().build();
     }
 
+    /**
+     * Gera uma nova senha e a envia por email
+     * @param emailDTO Email que irá receber a nova senha
+     * @return Um JSON de resposta(ResponseEntity) sem corpo e com status HTTP no contente(204)
+     */
     @RequestMapping(value = "/forgot", method = RequestMethod.POST)
     public ResponseEntity<Void> forgot(@Valid @RequestBody EmailDTO emailDTO) {
         authService.sendNewPassword(emailDTO.getEmail());

@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
 
+/**
+ * Classe de serviço com regras de negócio para autenticação
+ * @author José Henrique
+ */
 @Service
 public class AuthService {
 
@@ -19,6 +23,10 @@ public class AuthService {
     private EmailService emailService;
     private Random random = new Random();
 
+    /**
+     * Gera uma nova senha e faz envio dela por email
+     * @param email Email que irá receber a senha
+     */
     public void sendNewPassword(String email) {
         Cliente cliente = clienteRepository.findByEmail(email);
         if (cliente == null) {
@@ -29,6 +37,10 @@ public class AuthService {
         emailService.sendNewPasswordEmail(cliente, newPassword);
     }
 
+    /**
+     * Gera uma senha alerátoria
+     * @return Uma senha
+     */
     private String generateNewPassword() {
         char[] password = new char[10];
         for (int i = 0; i < 10; i ++) {
@@ -37,6 +49,10 @@ public class AuthService {
         return new String(password);
     }
 
+    /**
+     * Gera caracteres randômicos
+     * @return Um caracter
+     */
     private char getRandomChar() {
         int option = random.nextInt(3);
         if (option == 1) {
