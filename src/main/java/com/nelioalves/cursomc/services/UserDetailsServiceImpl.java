@@ -4,7 +4,7 @@ import java.util.Objects;
 import com.nelioalves.cursomc.domain.Cliente;
 import org.springframework.stereotype.Service;
 import com.nelioalves.cursomc.security.UserDetailsImpl;
-import com.nelioalves.cursomc.repositories.ClienteRepositoy;
+import com.nelioalves.cursomc.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,7 +18,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private ClienteRepositoy clienteRepositoy;
+    private ClienteRepository clienteRepository;
 
     /**
      * Cria um UserDetails a partir de um email de um Cliente
@@ -28,7 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Cliente cliente = clienteRepositoy.findByEmail(email);
+        Cliente cliente = clienteRepository.findByEmail(email);
         if (Objects.isNull(cliente)) {
             throw new UsernameNotFoundException(String.format("Usuário com id %d inválido!", cliente.getId()));
         }

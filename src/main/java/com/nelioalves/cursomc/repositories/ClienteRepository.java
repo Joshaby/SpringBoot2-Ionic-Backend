@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author José Henrique
  */
 @Repository
-public interface ClienteRepositoy extends JpaRepository<Cliente, Integer> {
+public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
     /**
      * Procura um Cliente por email

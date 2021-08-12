@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.nelioalves.cursomc.dto.ClienteDTO1;
 import javax.validation.ConstraintValidatorContext;
 import org.springframework.web.servlet.HandlerMapping;
-import com.nelioalves.cursomc.repositories.ClienteRepositoy;
+import com.nelioalves.cursomc.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.nelioalves.cursomc.resources.exceptions.FieldMessage;
 
@@ -20,7 +20,7 @@ import com.nelioalves.cursomc.resources.exceptions.FieldMessage;
 public class ClienteUpdateValidator implements ConstraintValidator<ClienteUpdate, ClienteDTO1> {
 
     @Autowired
-    private ClienteRepositoy clienteRepositoy;
+    private ClienteRepository clienteRepository;
     @Autowired
     private HttpServletRequest httpServletRequest;
 
@@ -40,7 +40,7 @@ public class ClienteUpdateValidator implements ConstraintValidator<ClienteUpdate
         List<FieldMessage> fieldMessageList = new ArrayList<>();
         Map<String, String> uriVariables = (Map<String, String>) httpServletRequest.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
         Integer id = Integer.parseInt(uriVariables.get("id"));
-        Cliente cliente = clienteRepositoy.findByEmail(clienteDTO1.getEmail());
+        Cliente cliente = clienteRepository.findByEmail(clienteDTO1.getEmail());
         if (cliente != null && ! cliente.getId().equals(id)) {
             fieldMessageList.add(new FieldMessage("email", "Email já existe!"));
         }

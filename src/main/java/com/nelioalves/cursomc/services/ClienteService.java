@@ -13,7 +13,7 @@ import com.nelioalves.cursomc.domain.enums.Perfil;
 import org.springframework.data.domain.PageRequest;
 import com.nelioalves.cursomc.security.UserDetailsImpl;
 import com.nelioalves.cursomc.domain.enums.TipoCliente;
-import com.nelioalves.cursomc.repositories.ClienteRepositoy;
+import com.nelioalves.cursomc.repositories.ClienteRepository;
 import com.nelioalves.cursomc.repositories.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -31,7 +31,7 @@ import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
 public class ClienteService {
 
     @Autowired
-    private ClienteRepositoy clienteRepositoy;
+    private ClienteRepository clienteRepository;
     @Autowired
     private EnderecoRepository enderecoRepository;
     @Autowired
@@ -49,7 +49,7 @@ public class ClienteService {
         if ((userDetailsImpl == null || !userDetailsImpl.hasHole(Perfil.ADMIN)) && !id.equals(userDetailsImpl.getId())) {
             throw new AuthorizationException("Acesso negado");
         }
-        Optional<Cliente> optionalCliente = clienteRepositoy.findById(id);
+        Optional<Cliente> optionalCliente = clienteRepository.findById(id);
         return optionalCliente.orElseThrow(
             () -> new ObjectNotFoundException(String.format("Objeto %d não encontrado! Tipo: %s", id, Cliente.class.getName())));
     }
@@ -62,7 +62,7 @@ public class ClienteService {
     @Transactional
     public Cliente insert(Cliente cliente) {
         cliente.setId(null);
-        Cliente clienteSaved = clienteRepositoy.save(cliente);
+        Cliente clienteSaved = clienteRepository.save(cliente);
         enderecoRepository.saveAll(cliente.getEnderecoList());
         return clienteSaved;
     }
@@ -74,9 +74,9 @@ public class ClienteService {
      */
     public Cliente update(Cliente cliente) {
         find(cliente.getId());
-        Cliente newCliente = clienteRepositoy.getOne(cliente.getId());
+        Cliente newCliente = clienteRepository.getOne(cliente.getId());
         updateCliente(newCliente, cliente);
-        return clienteRepositoy.save(newCliente);
+        return clienteRepository.save(newCliente);
     }
 
     /**
@@ -87,7 +87,7 @@ public class ClienteService {
     public void delete(Integer id) {
         find(id);
         try {
-            clienteRepositoy.deleteById(id);
+            clienteRepository.deleteById(id);
         }
         catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("Não é possível remover o cliente, ele possuí produtos!");
@@ -99,7 +99,7 @@ public class ClienteService {
      * @return Uma lista de Clientes encontrados
      */
     public List<Cliente> findAll() {
-        return clienteRepositoy.findAll();
+        return clienteRepository.findAll();
     }
 
     /**
@@ -112,7 +112,7 @@ public class ClienteService {
      */
     public Page<Cliente> findPage(Integer page, Integer linesPerPage, String direction, String orderBy) {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
-        return clienteRepositoy.findAll(pageRequest);
+        return clienteRepository.findAll(pageRequest);
     }
 
     /**

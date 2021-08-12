@@ -1,10 +1,14 @@
 package com.nelioalves.cursomc.resources;
 
+import javax.validation.Valid;
+import com.nelioalves.cursomc.dto.EmailDTO;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 import com.nelioalves.cursomc.services.UserService;
+import com.nelioalves.cursomc.services.AuthService;
 import com.nelioalves.cursomc.security.util.JWTUtil;
 import com.nelioalves.cursomc.security.UserDetailsImpl;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +24,8 @@ public class AuthResource {
 
     @Autowired
     private JWTUtil jwtUtil;
+    @Autowired
+    private AuthService authService;
 
     /**
      * Gera um novo token para um usuário logado com token perto de expiração
@@ -31,6 +37,12 @@ public class AuthResource {
         UserDetailsImpl userDetailsImpl = UserService.getUserAuthenticated();
         String token = jwtUtil.generateToken(userDetailsImpl.getUsername());
         httpServletResponse.addHeader("Authorization", "Bearer " + token);
+        return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/forgot", method = RequestMethod.POST)
+    public ResponseEntity<Void> forgot(@Valid @RequestBody EmailDTO emailDTO) {
+        authService.sendNewPassword(emailDTO.getEmail());
         return ResponseEntity.noContent().build();
     }
 }

@@ -29,7 +29,7 @@ public class DataBaseService {
     @Autowired
     private CidadeRepository cidadeRepository;
     @Autowired
-    private ClienteRepositoy clienteRepositoy;
+    private ClienteRepository clienteRepository;
     @Autowired
     private EnderecoRepository enderecoRepository;
     @Autowired
@@ -116,7 +116,7 @@ public class DataBaseService {
         cliente1.getEnderecoList().addAll(Arrays.asList(endereco1, endereco2));
         cliente2.getEnderecoList().addAll(Arrays.asList(endereco3));
 
-        clienteRepositoy.saveAll(Arrays.asList(cliente1, cliente2));
+        clienteRepository.saveAll(Arrays.asList(cliente1, cliente2));
         enderecoRepository.saveAll(Arrays.asList(endereco1, endereco2, endereco3));
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");

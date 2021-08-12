@@ -6,6 +6,7 @@ import org.thymeleaf.context.Context;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import com.nelioalves.cursomc.domain.Pedido;
+import com.nelioalves.cursomc.domain.Cliente;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.beans.factory.annotation.Value;
@@ -52,6 +53,17 @@ public abstract class AbstractEmailService implements EmailService {
     }
 
     /**
+     * Faz envio do email
+     * @param cliente Cliente a receber o email
+     * @param newPassword Nova senha do Cliente definida pelo sistema
+     */
+    @Override
+    public void sendNewPasswordEmail(Cliente cliente, String newPassword) {
+        SimpleMailMessage simpleMailMessage = prepareNewPasswordEmail(cliente, newPassword);
+        sendEmail(simpleMailMessage);
+    }
+
+    /**
      * Prepara o email(SimpleMailMessage)
      * @param pedido Pedido a ser enviado pelo email
      * @return O email(SimpleMailMessage) preparado
@@ -81,6 +93,22 @@ public abstract class AbstractEmailService implements EmailService {
         mimeMessageHelper.setSentDate(new Date(System.currentTimeMillis()));
         mimeMessageHelper.setText(htmlFromTemplatePedido(pedido), true);
         return mimeMessage;
+    }
+
+    /**
+     * Prepara um email(SimpleMailMessage) contendo a nova senha do Cliente
+     * @param cliente Cliente que recebeŕa um email
+     * @param newPassword Nova senha do Cliete definida pelo sistema
+     * @return Um email(SimpleMailMessage)
+     */
+    protected SimpleMailMessage prepareNewPasswordEmail(Cliente cliente, String newPassword) {
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setTo(cliente.getEmail());
+        simpleMailMessage.setFrom(sender);
+        simpleMailMessage.setSubject("Solicitação de nova senha");
+        simpleMailMessage.setSentDate(new Date(System.currentTimeMillis()));
+        simpleMailMessage.setText(String.format("Nova senha: %s", newPassword));
+        return simpleMailMessage;
     }
 
     /**
