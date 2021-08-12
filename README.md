@@ -27,6 +27,9 @@ Documentação do projeto: https://joshaby.github.io/SpringBoot2-Ionic-Backend-D
 
 ## Endpoints disponíveis
 
+### H2
+- `/h2-console` - GET: Acesso ao bando de dados H2
+
 ### Clientes
 
 - `/clientes` - GET: Obtém todos os clientes
@@ -57,3 +60,12 @@ Documentação do projeto: https://joshaby.github.io/SpringBoot2-Ionic-Backend-D
 
 ### Login
 - `/login` - POST: Faz login de um usuário com email e senha
+
+### Auth
+- `/auth/refresh_token` - POST: Gera um novo token pra um usuário logado com token prestes a expirar
+- `/auth/forgot` - POST: Gera um nova senha e a envia por email
+
+## Notas
+
+Endpoints `/produtos/**`, `/categorias/**` que são GET, `/auth/forgot`, `/clientes/**` que são POST, não necessitam de autenticação
+O endpoint `/h2-console` só funciona no ambiente de test
