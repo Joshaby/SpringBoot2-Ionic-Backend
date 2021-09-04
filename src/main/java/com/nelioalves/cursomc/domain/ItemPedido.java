@@ -1,12 +1,13 @@
 package com.nelioalves.cursomc.domain;
 
-import java.util.Locale;
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import java.io.Serializable;
 import java.text.NumberFormat;
-import javax.persistence.Entity;
-import javax.persistence.EmbeddedId;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Locale;
+import java.util.Objects;
 
 /**
  * Classe que representa uma entidade ItemPedido! Essa entidade terá um ItemPedidoPk que será uma chave primária composta

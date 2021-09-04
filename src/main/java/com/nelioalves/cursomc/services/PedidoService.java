@@ -1,24 +1,25 @@
 package com.nelioalves.cursomc.services;
 
-import java.util.Date;
-import java.util.Optional;
-import com.nelioalves.cursomc.domain.Pedido;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
 import com.nelioalves.cursomc.domain.Cliente;
-import org.springframework.stereotype.Service;
 import com.nelioalves.cursomc.domain.ItemPedido;
-import org.springframework.data.domain.PageRequest;
-import com.nelioalves.cursomc.security.UserDetailsImpl;
 import com.nelioalves.cursomc.domain.PagamentoComBoleto;
+import com.nelioalves.cursomc.domain.Pedido;
 import com.nelioalves.cursomc.domain.enums.EstadoPagamento;
-import com.nelioalves.cursomc.repositories.PedidoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import com.nelioalves.cursomc.repositories.PagamentoRepository;
-import org.springframework.transaction.annotation.Transactional;
 import com.nelioalves.cursomc.repositories.ItemPedidoRepository;
+import com.nelioalves.cursomc.repositories.PagamentoRepository;
+import com.nelioalves.cursomc.repositories.PedidoRepository;
+import com.nelioalves.cursomc.security.UserDetailsImpl;
 import com.nelioalves.cursomc.services.exceptions.AuthorizationException;
 import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.Optional;
 
 /**
  * Classe de serviço com regras de negócios de Pedidos

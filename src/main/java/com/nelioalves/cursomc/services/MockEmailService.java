@@ -2,11 +2,13 @@ package com.nelioalves.cursomc.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import javax.mail.internet.MimeMessage;
 import org.springframework.mail.SimpleMailMessage;
+
+import javax.mail.internet.MimeMessage;
 
 /**
  * Classe de serviço de emails para simular envio de emails
+ *
  * @author José Henrique
  */
 public class MockEmailService extends AbstractEmailService {

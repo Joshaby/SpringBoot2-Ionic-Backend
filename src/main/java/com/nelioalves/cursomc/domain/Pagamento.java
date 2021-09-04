@@ -1,14 +1,16 @@
 package com.nelioalves.cursomc.domain;
 
-import java.util.Objects;
-import javax.persistence.*;
-import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.nelioalves.cursomc.domain.enums.EstadoPagamento;
 
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Objects;
+
 /**
  * Classe que representa uma entidade abstrata Pagamento
+ *
  * @author José Henrique
  */
 @Entity

@@ -1,8 +1,8 @@
 package com.nelioalves.cursomc.dto;
 
-import java.io.Serializable;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
 /**
  * Classe DTO que representa um Email! Esse DTO é usado na requisição de geração de nova senha

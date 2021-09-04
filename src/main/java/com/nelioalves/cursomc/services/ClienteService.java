@@ -1,27 +1,29 @@
 package com.nelioalves.cursomc.services;
 
-import java.util.*;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Page;
 import com.nelioalves.cursomc.domain.Cidade;
 import com.nelioalves.cursomc.domain.Cliente;
 import com.nelioalves.cursomc.domain.Endereco;
-import org.springframework.stereotype.Service;
-import com.nelioalves.cursomc.dto.ClienteDTO2;
-import com.nelioalves.cursomc.dto.ClienteDTO1;
 import com.nelioalves.cursomc.domain.enums.Perfil;
-import org.springframework.data.domain.PageRequest;
-import com.nelioalves.cursomc.security.UserDetailsImpl;
 import com.nelioalves.cursomc.domain.enums.TipoCliente;
+import com.nelioalves.cursomc.dto.ClienteDTO1;
+import com.nelioalves.cursomc.dto.ClienteDTO2;
 import com.nelioalves.cursomc.repositories.ClienteRepository;
 import com.nelioalves.cursomc.repositories.EnderecoRepository;
+import com.nelioalves.cursomc.security.UserDetailsImpl;
+import com.nelioalves.cursomc.services.exceptions.AuthorizationException;
+import com.nelioalves.cursomc.services.exceptions.DataIntegrityException;
+import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import com.nelioalves.cursomc.services.exceptions.DataIntegrityException;
-import com.nelioalves.cursomc.services.exceptions.AuthorizationException;
-import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Classe de serviço com regras de negócio para Clientes

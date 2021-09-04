@@ -1,14 +1,14 @@
 package com.nelioalves.cursomc.config;
 
-import java.text.ParseException;
-import org.springframework.context.annotation.Bean;
-import com.nelioalves.cursomc.services.EmailService;
-import org.springframework.context.annotation.Profile;
 import com.nelioalves.cursomc.services.DataBaseService;
+import com.nelioalves.cursomc.services.EmailService;
 import com.nelioalves.cursomc.services.SmtpEmailService;
-import com.nelioalves.cursomc.services.MockEmailService;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+
+import java.text.ParseException;
 
 /**
  * Classe de configuração do ambiente test que usa persistência em H2

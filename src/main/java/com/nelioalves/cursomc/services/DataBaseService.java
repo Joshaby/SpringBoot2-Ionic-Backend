@@ -1,17 +1,18 @@
 package com.nelioalves.cursomc.services;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import com.nelioalves.cursomc.domain.*;
-import com.nelioalves.cursomc.repositories.*;
-import org.springframework.stereotype.Service;
+import com.nelioalves.cursomc.domain.enums.EstadoPagamento;
 import com.nelioalves.cursomc.domain.enums.Perfil;
 import com.nelioalves.cursomc.domain.enums.TipoCliente;
-import com.nelioalves.cursomc.domain.enums.EstadoPagamento;
+import com.nelioalves.cursomc.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Classe de serviço para iniciar massa de dados da aplicação

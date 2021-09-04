@@ -1,16 +1,17 @@
 package com.nelioalves.cursomc.services;
 
+import com.nelioalves.cursomc.domain.Categoria;
+import com.nelioalves.cursomc.domain.Produto;
+import com.nelioalves.cursomc.repositories.CategoriaRepository;
+import com.nelioalves.cursomc.repositories.ProdutoRepository;
+import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
-import org.springframework.data.domain.Page;
-import com.nelioalves.cursomc.domain.Produto;
-import org.springframework.stereotype.Service;
-import com.nelioalves.cursomc.domain.Categoria;
-import org.springframework.data.domain.Pageable;
-import org.springframework.beans.factory.annotation.Autowired;
-import com.nelioalves.cursomc.repositories.ProdutoRepository;
-import com.nelioalves.cursomc.repositories.CategoriaRepository;
-import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
 
 /**
  * Classe de serviço com regras de negócio para Produtos

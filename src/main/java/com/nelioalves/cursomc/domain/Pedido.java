@@ -1,11 +1,12 @@
 package com.nelioalves.cursomc.domain;
 
-import java.util.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.*;
 
 /**
  * Classe que representa uma entidade Pedido

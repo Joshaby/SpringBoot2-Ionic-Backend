@@ -1,10 +1,10 @@
 package com.nelioalves.cursomc.resources.utils;
 
-import java.util.List;
-import java.util.Arrays;
 import java.net.URLDecoder;
-import java.util.stream.Collectors;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Classe com métodos úteis estáticos usado na camada de resource

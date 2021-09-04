@@ -1,12 +1,13 @@
 package com.nelioalves.cursomc.services;
 
-import java.util.Random;
 import com.nelioalves.cursomc.domain.Cliente;
-import org.springframework.stereotype.Service;
 import com.nelioalves.cursomc.repositories.ClienteRepository;
+import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
+import org.springframework.stereotype.Service;
+
+import java.util.Random;
 
 /**
  * Classe de serviço com regras de negócio para autenticação

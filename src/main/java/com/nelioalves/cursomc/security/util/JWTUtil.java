@@ -1,12 +1,13 @@
 package com.nelioalves.cursomc.security.util;
 
-import java.util.Date;
-import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.Claims;
-import java.nio.charset.StandardCharsets;
+import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Date;
 
 /**
  * Classe útil com métodos estáticos usados no contexto do JWT

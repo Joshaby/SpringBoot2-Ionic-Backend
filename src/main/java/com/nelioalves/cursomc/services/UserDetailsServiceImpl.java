@@ -1,14 +1,15 @@
 package com.nelioalves.cursomc.services;
 
-import java.util.Objects;
 import com.nelioalves.cursomc.domain.Cliente;
-import org.springframework.stereotype.Service;
-import com.nelioalves.cursomc.security.UserDetailsImpl;
 import com.nelioalves.cursomc.repositories.ClienteRepository;
+import com.nelioalves.cursomc.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import java.util.Objects;
 
 /**
  * Classe de serviço com regras de negócio para UserDetails

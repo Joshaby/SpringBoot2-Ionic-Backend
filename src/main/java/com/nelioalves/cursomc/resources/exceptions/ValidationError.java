@@ -1,7 +1,7 @@
 package com.nelioalves.cursomc.resources.exceptions;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe que representa um erro de validação, que possuí uma lista de erros

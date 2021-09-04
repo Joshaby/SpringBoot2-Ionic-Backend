@@ -1,12 +1,13 @@
 package com.nelioalves.cursomc.domain;
 
-import java.util.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.nelioalves.cursomc.domain.enums.Perfil;
+import com.nelioalves.cursomc.domain.enums.TipoCliente;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.*;
 import java.util.stream.Collectors;
-import com.nelioalves.cursomc.domain.enums.Perfil;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nelioalves.cursomc.domain.enums.TipoCliente;
 
 /**
  * Classe que representa a entidade Cliente

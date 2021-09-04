@@ -1,11 +1,12 @@
 package com.nelioalves.cursomc.domain;
 
-import java.util.Objects;
-import java.io.Serializable;
-import javax.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.ManyToOne;
+import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Classe que representa uma chave primária composta usada em ItemPedico

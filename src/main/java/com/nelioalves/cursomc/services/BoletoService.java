@@ -1,9 +1,10 @@
 package com.nelioalves.cursomc.services;
 
-import java.util.Date;
-import java.util.Calendar;
-import org.springframework.stereotype.Service;
 import com.nelioalves.cursomc.domain.PagamentoComBoleto;
+import org.springframework.stereotype.Service;
+
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Classe de serviço para geração de data de vencimento de um boleto

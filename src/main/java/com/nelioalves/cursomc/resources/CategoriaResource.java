@@ -1,21 +1,23 @@
 package com.nelioalves.cursomc.resources;
 
-import java.net.URI;
-import java.util.List;
-import javax.validation.Valid;
-import java.util.stream.Collectors;
-import org.springframework.data.domain.Page;
 import com.nelioalves.cursomc.domain.Categoria;
 import com.nelioalves.cursomc.dto.CategoriaDTO;
+import com.nelioalves.cursomc.services.CategoriaService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import com.nelioalves.cursomc.services.CategoriaService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import javax.validation.Valid;
+import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Classe de REST API para endpoints /categorias
+ *
  * @author José Henrique
  */
 @RestController

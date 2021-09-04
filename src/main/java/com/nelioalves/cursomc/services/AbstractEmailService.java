@@ -1,17 +1,18 @@
 package com.nelioalves.cursomc.services;
 
-import java.util.Date;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
-import com.nelioalves.cursomc.domain.Pedido;
 import com.nelioalves.cursomc.domain.Cliente;
+import com.nelioalves.cursomc.domain.Pedido;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.util.Date;
 
 /**
  * Classe abstrata de base para serviço de email

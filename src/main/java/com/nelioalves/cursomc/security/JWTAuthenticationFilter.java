@@ -1,24 +1,26 @@
 package com.nelioalves.cursomc.security;
 
-import java.util.Date;
-import java.io.IOException;
-import java.util.ArrayList;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nelioalves.cursomc.dto.CredenciaisDTO;
+import com.nelioalves.cursomc.security.util.JWTUtil;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.nelioalves.cursomc.dto.CredenciaisDTO;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nelioalves.cursomc.security.util.JWTUtil;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Classe que representa filtro de autenticação
+ *
  * @author José Henrique
  */
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {

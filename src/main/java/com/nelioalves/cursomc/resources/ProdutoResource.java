@@ -1,16 +1,17 @@
 package com.nelioalves.cursomc.resources;
 
-import java.util.List;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
 import com.nelioalves.cursomc.domain.Produto;
 import com.nelioalves.cursomc.dto.ProdutoDTO;
+import com.nelioalves.cursomc.resources.utils.ResourcesUtils;
+import com.nelioalves.cursomc.services.ProdutoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.PageRequest;
-import com.nelioalves.cursomc.services.ProdutoService;
-import com.nelioalves.cursomc.resources.utils.ResourcesUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 /**
  * Classe REST API para endpoints /produtos

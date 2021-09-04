@@ -1,16 +1,18 @@
 package com.nelioalves.cursomc.resources;
 
-import java.net.URI;
 import com.nelioalves.cursomc.domain.Pedido;
-import org.apache.coyote.Response;
+import com.nelioalves.cursomc.services.PedidoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.nelioalves.cursomc.services.PedidoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-/** Classe REST API para endpoints /pedidos
+import java.net.URI;
+
+/**
+ * Classe REST API para endpoints /pedidos
+ *
  * @author José Henrique
  */
 @RestController

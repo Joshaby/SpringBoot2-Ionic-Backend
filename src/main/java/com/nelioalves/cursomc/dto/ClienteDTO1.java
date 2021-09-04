@@ -1,11 +1,12 @@
 package com.nelioalves.cursomc.dto;
 
-import java.io.Serializable;
+import com.nelioalves.cursomc.domain.Cliente;
+import com.nelioalves.cursomc.services.validation.ClienteUpdate;
+import org.hibernate.validator.constraints.Length;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import com.nelioalves.cursomc.domain.Cliente;
-import org.hibernate.validator.constraints.Length;
-import com.nelioalves.cursomc.services.validation.ClienteUpdate;
+import java.io.Serializable;
 
 /**
  * Classe DTO que contém algumas informações de um Cliente! Esse DTO é usado para atualizar um Cliente no sistema

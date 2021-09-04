@@ -1,21 +1,23 @@
 package com.nelioalves.cursomc.resources;
 
-import javax.validation.Valid;
 import com.nelioalves.cursomc.dto.EmailDTO;
-import javax.servlet.http.HttpServletResponse;
-import org.springframework.http.ResponseEntity;
-import com.nelioalves.cursomc.services.UserService;
-import com.nelioalves.cursomc.services.AuthService;
-import com.nelioalves.cursomc.security.util.JWTUtil;
 import com.nelioalves.cursomc.security.UserDetailsImpl;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.nelioalves.cursomc.security.util.JWTUtil;
+import com.nelioalves.cursomc.services.AuthService;
+import com.nelioalves.cursomc.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 /**
  * Classe REST API para endpoint /auth
+ *
  * @author José Henrique
  */
 @RestController

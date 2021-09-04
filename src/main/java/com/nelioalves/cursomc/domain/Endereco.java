@@ -1,9 +1,10 @@
 package com.nelioalves.cursomc.domain;
 
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Objects;
 
 /**
  * Classe que representa um entidade Endereço

@@ -1,7 +1,7 @@
 package com.nelioalves.cursomc.services.utils;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe com métodos estáticos úteis

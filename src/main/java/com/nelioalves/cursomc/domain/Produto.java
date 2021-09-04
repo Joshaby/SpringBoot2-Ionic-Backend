@@ -1,10 +1,11 @@
 package com.nelioalves.cursomc.domain;
 
-import java.util.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.*;
 import java.util.stream.Collectors;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Classe que representa uma Entidade Produto

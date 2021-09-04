@@ -1,16 +1,17 @@
 package com.nelioalves.cursomc.services.validation;
 
-import java.util.List;
-import java.util.ArrayList;
-import javax.validation.ConstraintValidator;
 import com.nelioalves.cursomc.domain.Cliente;
-import com.nelioalves.cursomc.dto.ClienteDTO2;
-import javax.validation.ConstraintValidatorContext;
 import com.nelioalves.cursomc.domain.enums.TipoCliente;
-import com.nelioalves.cursomc.services.utils.ServicesUtils;
+import com.nelioalves.cursomc.dto.ClienteDTO2;
 import com.nelioalves.cursomc.repositories.ClienteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.nelioalves.cursomc.resources.exceptions.FieldMessage;
+import com.nelioalves.cursomc.services.utils.ServicesUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe de validação de um ClienteDTO2 - Inserção de Clientes
